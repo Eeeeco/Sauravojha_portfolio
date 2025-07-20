@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS for the glowing box borders */
+        .glow-border {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem; /* rounded-xl */
+            background-color: #1a202c; /* dark background for contrast */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+        }
+
+        .glow-border:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+        }
+
+        .glow-border::before,
+        .glow-border::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                /* Blue for dark theme */
+                rgba(0, 191, 255, 0.5) 20%,
+                transparent 30%,
+                transparent 70%,
+                rgba(0, 191, 255, 0.5) 80%,
+                transparent 100%
+            );
+            animation: rotate 4s linear infinite;
+            z-index: 0;
+            opacity: 0.5; /* Subtle glow */
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .dark .glow-border::before,
+        .dark .glow-border::after {
+             background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                rgba(0, 191, 255, 0.5) 20%,
+                transparent 30%,
+                transparent 70%,
+                rgba(0, 191, 255, 0.5) 80%,
+                transparent 100%
+            );
+        }
+
+        .light .glow-border::before,
+        .light .glow-border::after {
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                /* Gold/Orange for light theme */
+                rgba(255, 193, 7, 0.5) 20%,
+                transparent 30%,
+                transparent 70%,
+                rgba(255, 193, 7, 0.5) 80%,
+                transparent 100%
+            );
+        }
+
+        .glow-border::after {
+            animation-delay: -2s; /* Offset for continuous look */
+        }
+
+        .glow-border:hover::before,
+        .glow-border:hover::after {
+            opacity: 1; /* Stronger glow on hover */
+        }
+
+        .glow-border .content {
+            position: relative;
+            z-index: 1;
+            background-color: inherit; /* Ensure content background is correct */
+            padding: 1.5rem; /* p-6 */
+            border-radius: 0.75rem; /* rounded-xl */
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Custom toggle switch styling */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 28px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3; /* Blue for checked state */
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(22px);
+            -ms-transform: translateX(22px);
+            transform: translateX(22px);
+        }
+
+        /* Adjust colors for dark/light theme */
+        .dark .slider {
+            background-color: #4A5568; /* Darker gray for dark mode */
+        }
+        .dark input:checked + .slider {
+            background-color: #63B3ED; /* Lighter blue for dark mode checked */
+        }
+        .light .slider {
+            background-color: #CBD5E0; /* Light gray for light mode */
+        }
+        .light input:checked + .slider {
+            background-color: #4299E1; /* Standard blue for light mode checked */
+        }
+
+        /* Three.js canvas styling */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+        }
+
+        /* Ensure smooth transition for theme changes on body */
+        body {
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Dark theme styles */
+        body.dark {
+            background-color: #1a202c; /* Dark background */
+            color: #e2e8f0; /* Light text */
+        }
+
+        /* Light theme styles */
+        body.light {
+            background-color: #f7fafc; /* Light background */
+            color: #2d3748; /* Dark text */
+        }
+    </style>
+</head>
+<body class="dark">
+    <!-- Three.js Canvas for animated background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Header -->
+    <header class="p-4 flex justify-between items-center relative z-10">
+        <h1 class="text-2xl font-bold text-blue-400">My Portfolio</h1>
+        <nav>
+            <ul class="flex space-x-6">
+                <li><a href="#home" class="text-lg hover:text-blue-300 transition-colors duration-300">Home</a></li>
+                <li><a href="#projects" class="text-lg hover:text-blue-300 transition-colors duration-300">Projects</a></li>
+                <li><a href="#skills" class="text-lg hover:text-blue-300 transition-colors duration-300">Skills</a></li>
+                <li><a href="#contact" class="text-lg hover:text-blue-300 transition-colors duration-300">Contact</a></li>
+                <!-- Theme Toggle -->
+                <li>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Sections -->
+    <main class="container mx-auto p-4 relative z-10">
+        <!-- Home Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center text-center py-16">
+            <div class="max-w-3xl mx-auto p-8 bg-gray-800 bg-opacity-70 rounded-xl shadow-lg glow-border">
+                <div class="content">
+                    <h2 class="text-5xl font-extrabold text-white mb-4">Welcome to My Portfolio!</h2>
+                    <p class="text-xl text-gray-300 mb-8">
+                        I'm a passionate developer creating innovative solutions. Explore my work and skills below.
+                    </p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16">
+            <h2 class="text-4xl font-bold text-center mb-12 text-blue-400">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="glow-border max-w-sm mx-auto">
+                    <div class="content">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">Project Alpha</h3>
+                        <p class="text-gray-300 mb-4">A web application demonstrating advanced data visualization techniques.</p>
+                        <a href="#" class="text-blue-400 hover:underline">View Project</a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="glow-border max-w-sm mx-auto">
+                    <div class="content">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">Project Beta</h3>
+                        <p class="text-gray-300 mb-4">A mobile app focused on productivity and task management.</p>
+                        <a href="#" class="text-blue-400 hover:underline">View Project</a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="glow-border max-w-sm mx-auto">
+                    <div class="content">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">Project Gamma</h3>
+                        <p class="text-gray-300 mb-4">An AI-powered chatbot for customer support automation.</p>
+                        <a href="#" class="text-blue-400 hover:underline">View Project</a>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="glow-border max-w-sm mx-auto">
+                    <div class="content">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">Heart Disease Prediction</h3>
+                        <p class="text-gray-300 mb-4">Advanced analysis using ML model for health risk reduction.</p>
+                        <a href="#" class="text-blue-400 hover:underline">View Project</a>
+                    </div>
+                </div>
+                 <!-- Project 5 -->
+                <div class="glow-border max-w-sm mx-auto">
+                    <div class="content">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">House Price Prediction</h3>
+                        <p class="text-gray-300 mb-4">Prediction to choose affordable housing costs using ML model.</p>
+                        <a href="#" class="text-blue-400 hover:underline">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-16">
+            <h2 class="text-4xl font-bold text-center mb-12 text-blue-400">My Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skill 1 -->
+                <div class="glow-border max-w-sm mx-auto">
+                    <div class="content">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">Web Development</h3>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li>HTML, CSS, JavaScript</li>
+                            <li>React, Vue, Angular</li>
+                            <li>Node.js, Express</li>
+                            <li>Tailwind CSS, Bootstrap</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Skill 2 -->
+                <div class="glow-border max-w-sm mx-auto">
+                    <div class="content">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">Machine Learning</h3>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li>Python, Scikit-learn</li>
+                            <li>TensorFlow, Keras</li>
+                            <li>Data Preprocessing</li>
+                            <li>Model Evaluation</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Skill 3 -->
+                <div class="glow-border max-w-sm mx-auto">
+                    <div class="content">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">Cloud & DevOps</h3>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li>AWS, Azure, GCP</li>
+                            <li>Docker, Kubernetes</li>
+                            <li>CI/CD Pipelines</li>
+                            <li>Git, GitHub</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16">
+            <h2 class="text-4xl font-bold text-center mb-12 text-blue-400">Contact Me</h2>
+            <div class="glow-border max-w-md mx-auto">
+                <div class="content">
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-lg font-medium text-white">Name</label>
+                            <input type="text" id="name" name="name" class="mt-1 block w-full p-3 rounded-md shadow-sm bg-gray-700 border-gray-600 text-white focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-lg font-medium text-white">Email</label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full p-3 rounded-md shadow-sm bg-gray-700 border-gray-600 text-white focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-lg font-medium text-white">Message</label>
+                            <textarea id="message" name="message" rows="4" class="mt-1 block w-full p-3 rounded-md shadow-sm bg-gray-700 border-gray-600 text-white focus:ring-blue-500 focus:border-blue-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="p-4 text-center text-gray-400 relative z-10">
+        <p>&copy; 2024 My Portfolio. All rights reserved.</p>
+    </footer>
+
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.classList.add(savedTheme);
+            if (savedTheme === 'light') {
+                themeToggle.checked = true;
+            }
+        } else {
+            // Default to dark theme if no preference is saved
+            body.classList.add('dark');
+            themeToggle.checked = false;
+        }
+
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.remove('dark');
+                body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light');
+                body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+            // Update Three.js background colors on theme change
+            if (window.backgroundMaterial) {
+                updateBackgroundColors(window.backgroundMaterial);
+            }
+        });
+
+        // Three.js Animated Background (Jarvis-like blue waves)
+        let scene, camera, renderer, material, mesh;
+
+        function initThreeJS() {
+            const canvas = document.getElementById('bg-canvas');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+
+            // Create a plane for the background
+            const geometry = new THREE.PlaneGeometry(20, 20, 100, 100); // Larger plane, more segments
+
+            // Custom Shader Material for the Jarvis-like effect
+            // Vertex Shader: Deforms the plane to create waves
+            const vertexShader = `
+                uniform float time;
+                uniform float amplitude;
+                uniform float frequency;
+                varying vec2 vUv;
+
+                void main() {
+                    vUv = uv;
+                    vec3 newPosition = position;
+                    // Create a wavy effect using sine waves
+                    newPosition.z += sin(newPosition.x * frequency + time) * amplitude;
+                    newPosition.z += cos(newPosition.y * frequency * 0.5 + time * 0.8) * amplitude * 0.7;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
+                }
+            `;
+
+            // Fragment Shader: Colors the plane and adds grid lines
+            const fragmentShader = `
+                uniform float time;
+                uniform vec3 color1;
+                uniform vec3 color2;
+                uniform vec3 gridColor;
+                uniform float gridThickness;
+                varying vec2 vUv;
+
+                void main() {
+                    // Create a gradient based on UV coordinates and time
+                    vec3 baseColor = mix(color1, color2, vUv.y + sin(vUv.x * 10.0 + time * 0.5) * 0.1);
+
+                    // Add grid lines
+                    vec2 grid = fract(vUv * 50.0); // Adjust 50.0 for grid density
+                    float gridLine = min(grid.x, grid.y);
+                    gridLine = step(1.0 - gridThickness, gridLine); // Adjust gridThickness for line thickness
+
+                    // Combine base color with grid lines
+                    vec3 finalColor = mix(baseColor, gridColor, gridLine);
+
+                    gl_FragColor = vec4(finalColor, 0.9); // Slightly transparent
+                }
+            `;
+
+            material = new THREE.ShaderMaterial({
+                uniforms: {
+                    time: { value: 0.0 },
+                    amplitude: { value: 0.5 }, // Wave height
+                    frequency: { value: 2.0 }, // Wave density
+                    color1: { value: new THREE.Color(0x0000FF) }, // Deep Blue
+                    color2: { value: new THREE.Color(0x00BFFF) }, // Light Blue
+                    gridColor: { value: new THREE.Color(0x00FFFF) }, // Cyan for grid
+                    gridThickness: { value: 0.02 } // Thickness of grid lines
+                },
+                vertexShader: vertexShader,
+                fragmentShader: fragmentShader,
+                transparent: true,
+            });
+
+            mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+
+            camera.position.z = 5;
+
+            // Store material globally to update colors on theme change
+            window.backgroundMaterial = material;
+
+            // Initial color update based on current theme
+            updateBackgroundColors(material);
+        }
+
+        function updateBackgroundColors(material) {
+            if (body.classList.contains('light')) {
+                // Professional light theme colors (e.g., subtle gold/orange/beige)
+                material.uniforms.color1.value.set(0xFFD700); // Gold
+                material.uniforms.color2.value.set(0xFFC107); // Amber
+                material.uniforms.gridColor.value.set(0xFFFAF0); // Ivory/Beige
+                material.uniforms.amplitude.value = 0.3; // Less intense waves for light theme
+            } else {
+                // Jarvis-like blue colors for dark theme
+                material.uniforms.color1.value.set(0x0000FF); // Deep Blue
+                material.uniforms.color2.value.set(0x00BFFF); // Light Blue
+                material.uniforms.gridColor.value.set(0x00FFFF); // Cyan for grid
+                material.uniforms.amplitude.value = 0.5; // More intense waves for dark theme
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Update time uniform for animation
+            material.uniforms.time.value += 0.005;
+
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        window.addEventListener('resize', onWindowResize);
+
+        // Initialize Three.js on window load
+        window.onload = function() {
+            initThreeJS();
+            animate();
+        };
+    </script>
+</body>
+</html>
