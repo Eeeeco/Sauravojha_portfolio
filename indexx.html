@@ -1,0 +1,2109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saurav Ojha - Data Analyst Portfolio</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Poppins, Dancing Script, Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        :root {
+            /* Dark theme colors (default) */
+            --bg-color-primary: #0a0a0a; /* Main body background */
+            --bg-color-secondary: rgba(1, 0, 0, 0.7); /* Section backgrounds */
+            --text-color-primary: white; /* Main text color */
+            --text-color-secondary: #ddd; /* Secondary text, paragraph text */
+            --card-bg: rgba(255, 255, 255, 0.08); /* Card backgrounds */
+            --card-shadow-light: rgba(255, 255, 255, 0.05); /* Neumorphic light shadow */
+            --card-shadow-dark: rgba(0, 0, 0, 0.5); /* Neumorphic dark shadow */
+            --neumorphic-bg: #1a1a1a; /* Toggle switch background */
+            --neumorphic-shadow-light: rgba(255, 255, 255, 0.1);
+            --neumorphic-shadow-dark: rgba(0, 0, 0, 0.6);
+            --input-bg: rgba(255, 255, 255, 0.1);
+            --input-border: #4b8bb7;
+            --input-placeholder: rgba(255, 255, 255, 0.7);
+            --header-bg: transparent;
+            --header-border-hover: #4b8bb7;
+            --social-icon-border: #ffffff;
+            --social-icon-color: #ffffff;
+            --social-icon-hover-bg: #ffffff;
+            --social-icon-hover-color: black;
+            --btn-bg: #000000;
+            --btn-border: #ffffff;
+            --btn-hover-bg: #f4f4f4;
+            --btn-hover-color: black;
+            --timeline-line-bg: rgba(255, 255, 255, 0.15);
+            --back-to-top-bg: linear-gradient(45deg, rgba(112, 56, 201, 0.5), rgba(0, 221, 235, 0.5));
+            /* New Toggle Colors for Dark Theme */
+            --toggle-slider-bg-off: #333; /* Dark grey when off (dark theme) */
+            --toggle-slider-bg-on: #FFD700; /* Yellow when on (dark theme) */
+            --toggle-thumb-bg: white;
+            --toggle-icon-color-dark: white; /* Moon icon color in dark theme */
+            --toggle-icon-color-light: #333; /* Sun icon color in dark theme */
+            --space-gradient-start: #0a0a0a;
+            --space-gradient-mid: #130560;
+            --space-gradient-end: #08003b;
+            --star-color-1: #eee;
+            --star-color-2: #ccc;
+            --star-color-3: #aaa;
+        }
+
+        body.light-theme {
+            /* Light theme colors (Yellow/Light) */
+            --bg-color-primary: #f0f2f5; /* Light grey/off-white for neumorphism base */
+            --bg-color-secondary: #f0f2f5; /* Same as primary for seamless look */
+            --text-color-primary: #333333; /* Dark grey */
+            --text-color-secondary: #555555; /* Medium grey */
+            --card-bg: #f0f2f5; /* Off-white, same as background for neumorphism */
+            --card-shadow-light: #ffffff; /* Lighter shadow for neumorphism */
+            --card-shadow-dark: #d1d9e6; /* Darker shadow for neumorphism */
+            --neumorphic-bg: #f0f2f5; /* Base for toggle */
+            --neumorphic-shadow-light: #ffffff;
+            --neumorphic-shadow-dark: #d1d9e6;
+            --input-bg: #e0e2e5; /* Slightly darker for recessed look */
+            --input-border: #99a9b7;
+            --input-placeholder: rgba(51, 51, 51, 0.7);
+            --header-bg: rgba(240, 242, 245, 0.8); /* Slightly opaque for light theme */
+            --header-border-hover: #4b8bb7; /* Keep blue for consistency */
+            --social-icon-border: #333;
+            --social-icon-color: #333;
+            --social-icon-hover-bg: #333;
+            --social-icon-hover-color: white;
+            --btn-bg: #e0e2e5; /* Light grey for button base */
+            --btn-border: #333;
+            --btn-hover-bg: #d0d2d5; /* Slightly darker on hover */
+            --btn-hover-color: black;
+            --timeline-line-bg: rgba(0, 0, 0, 0.15);
+            --back-to-top-bg: linear-gradient(45deg, rgba(112, 56, 201, 0.8), rgba(0, 221, 235, 0.8)); /* Make it more solid in light theme */
+            /* New Toggle Colors for Light Theme */
+            --toggle-slider-bg-off: #e0e2e5; /* Light grey when off (light theme) */
+            --toggle-slider-bg-on: #333; /* Dark grey when on (light theme) */
+            --toggle-thumb-bg: white;
+            --toggle-icon-color-dark: #333; /* Moon icon color in light theme */
+            --toggle-icon-color-light: white; /* Sun icon color in light theme */
+            --space-gradient-start: #f0f2f5;
+            --space-gradient-mid: #e0e2e5;
+            --space-gradient-end: #d0d2d5;
+            --star-color-1: #888;
+            --star-color-2: #AAA;
+            --star-color-3: #CCC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif; /* Default font */
+        }
+
+        html {
+            font-size: 62.5%; /* 1rem = 10px */
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background-color: var(--bg-color-primary); /* Use CSS variable */
+            color: var(--text-color-primary); /* Use CSS variable */
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+            position: relative; /* Needed for z-index context */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
+        }
+
+        /* Space Background Styles */
+        .space-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, var(--space-gradient-start) 0%, var(--space-gradient-mid) 50%, var(--space-gradient-end) 100%);
+            z-index: -1; /* Send to back */
+            overflow: hidden;
+            transition: background 0.5s ease; /* Add transition for smooth change */
+        }
+
+        .stars, .stars2, .stars3 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            animation: stars-move 150s linear infinite, twinkle 5s ease-in-out infinite alternate;
+            transition: background-image 0.5s ease; /* Add transition for smooth star color change */
+        }
+
+        .stars {
+            background-image: radial-gradient(2px 2px at 20px 30px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 80px 70px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 150px 120px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 200px 180px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 250px 20px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 300px 90px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 350px 140px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 400px 210px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 450px 50px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 500px 100px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 550px 160px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 600px 230px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 650px 70px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 700px 130px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 750px 190px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 800px 250px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 850px 10px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 900px 60px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 950px 110px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 1000px 170px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 1050px 230px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 1100px 80px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 1150px 140px, var(--star-color-1), rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 1200px 200px, var(--star-color-1), rgba(0,0,0,0));
+            background-size: 100% 100%; /* Cover the entire area */
+        }
+
+        .stars2 {
+            background-image: radial-gradient(1.5px 1.5px at 10px 100px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 60px 150px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 120px 20px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 180px 80px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 230px 130px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 280px 180px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 330px 230px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 380px 10px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 430px 60px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 480px 110px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 530px 160px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 580px 210px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 630px 260px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 680px 30px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 730px 90px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 780px 140px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 830px 190px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 880px 240px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 930px 50px, var(--star-color-2), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 980px 120px, var(--star-color-2), rgba(0,0,0,0));
+            background-size: 100% 100%;
+            animation-duration: 200s; /* Slower movement for distant stars */
+            animation-delay: 1s;
+        }
+
+        .stars3 {
+            background-image: radial-gradient(1px 1px at 50px 200px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 100px 10px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 160px 70px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 220px 120px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 280px 170px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 340px 220px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 400px 270px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 460px 40px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 520px 100px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1.5px 1.5px at 580px 150px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 640px 200px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 700px 250px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 760px 80px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 820px 130px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 880px 180px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 940px 230px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 1000px 60px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 1060px 110px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 1120px 160px, var(--star-color-3), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 1180px 210px, var(--star-color-3), rgba(0,0,0,0));
+            background-size: 100% 100%;
+            animation-duration: 250s; /* Even slower movement for furthest stars */
+            animation-delay: 2s;
+        }
+
+        @keyframes stars-move {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-2000px); } /* Adjust for longer scroll or more stars */
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Main content wrapper to sit above the background */
+        .main-content-wrapper {
+            position: relative;
+            z-index: 1; /* Ensure content is above the background */
+            width: 100%;
+            min-height: 100vh; /* Ensure it covers full height */
+            background-color: transparent; /* Allow space background to show through */
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 9%;
+            background-color: var(--header-bg); /* Use CSS variable */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100; /* Ensure header is on top */
+            transition: background-color 0.3s ease, opacity 0.5s ease, transform 0.5s ease; /* Smooth transition for header fade/slide */
+        }
+
+        .fixed-name {
+            font-size: 2rem;
+            color: var(--text-color-primary); /* Use CSS variable */
+            font-weight: 500;
+            transition: 0.3s ease;
+            border-bottom: 3px solid transparent; /* Underline effect on hover */
+            font-family: 'Dancing Script', cursive; /* Applied Dancing Script */
+        }
+
+        .fixed-name:hover {
+            color: var(--header-border-hover); /* Blue color on hover */
+            border-bottom: 3px solid var(--header-border-hover);
+        }
+
+        nav {
+            display: flex; /* Make nav a flex container */
+            align-items: center; /* Align items vertically */
+        }
+
+        nav a {
+            font-size: 1.8rem;
+            color: var(--text-color-primary); /* Use CSS variable */
+            margin-left: 4rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+            border-bottom: 3px solid transparent; /* Underline effect on hover/active */
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--header-border-hover); /* Blue color on hover/active */
+            border-bottom: 3px solid var(--header-border-hover);
+        }
+
+        /* Home Section */
+        .home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8rem; /* Space between content and image */
+            padding: 8rem 9% 5rem;
+            background-color: transparent; /* Transparent to show space background */
+            min-height: 100vh; /* Full viewport height */
+        }
+
+        .home-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .home-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.3;
+            font-family: 'Montserrat', sans-serif; /* Applied Montserrat */
+            color: var(--text-color-primary); /* Use CSS variable */
+        }
+
+        .home-content h1 span {
+            color: #8f8f8f; /* Grey color for name span */
+        }
+
+        .home-content h3 {
+            font-size: 3.5rem;
+            margin-bottom: 1.1rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif; /* Applied Montserrat */
+            color: var(--text-color-primary); /* Use CSS variable */
+        }
+
+        /* Typing Animation */
+        .typing-text {
+            font-size: 34px;
+            font-weight: 600;
+            min-width: 280px; /* Ensure enough space for words */
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Animated words using content property */
+        .typing-text span::before {
+            content: "Machine Learning Engineer"; /* Default content */
+            color: #4766cb; /* Blue color for animated text */
+            animation: words 15s infinite; /* Animation for words */
+        }
+
+        /* Typing cursor animation */
+        .typing-text span::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 35px;
+            background-color: #4b8bb7; /* Blue cursor */
+            right: -8px;
+            animation: cursor 0.6s infinite; /* Blinking cursor */
+        }
+
+        @keyframes cursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes words {
+            0%, 20% { content: "Machine Learning Engineer"; }
+            21%, 40% { content: "Data Scientist"; }
+            41%, 60% { content: "AI Developer"; }
+            61%, 80% { content: "Data Analyst"; }
+            81%, 100% { content: "Business Analyst"; }
+        }
+
+        .home-content p {
+            font-size: 1.6rem;
+            color: var(--text-color-secondary); /* Use CSS variable */
+        }
+
+        .home-img img {
+            width: 25vw; /* Responsive width for image */
+            border-radius: 50%; /* Circular image */
+            box-shadow: 0 0 25px #4b8bb7; /* Blue glow effect */
+            cursor: pointer;
+            transition: 0.2s linear; /* Smooth hover effect */
+        }
+
+        .home-img img:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 4rem;
+            height: 4rem;
+            background-color: transparent;
+            border: 0.2rem solid var(--social-icon-border); /* White border */
+            font-size: 2rem;
+            border-radius: 50%;
+            margin: 3rem 1.5rem 3rem 0;
+            transition: 0.3s ease; /* Smooth hover effect */
+            color: var(--social-icon-color);
+        }
+
+        .social-icons a:hover {
+            color: var(--social-icon-hover-color); /* Change to background color on hover */
+            transform: scale(1.3) translateY(-5px); /* Enlarge and lift on hover */
+            background-color: var(--social-icon-hover-bg);
+            box-shadow: 0 0 25px var(--social-icon-hover-bg);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background-color: var(--btn-bg); /* Black background for button */
+            border-radius: 4rem;
+            font-size: 1.6rem;
+            color: var(--btn-color);
+            font-weight: 600;
+            border: 2px solid var(--btn-border); /* White border for button */
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: scale(1.03); /* Slightly enlarge on hover */
+            background-color: var(--btn-hover-bg); /* Light grey background on hover */
+            color: var(--btn-hover-color);
+            box-shadow: 0 0 25px var(--btn-hover-bg);
+        }
+
+        /* Unified Background for Sections (All black as requested) */
+        .about,
+        .projects,
+        .skills,
+        .section-timeline, /* Applies to Education */
+        .experience,
+        .contact {
+            background-color: var(--bg-color-secondary); /* Semi-transparent black to let space background show */
+            padding: 8rem 0;
+            min-height: 100vh; /* Ensure sections take full viewport height */
+            transition: background-color 0.3s ease;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0; /* Hidden initially */
+            transform: translateY(20px); /* Slightly moved down initially */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth animation on scroll */
+            font-family: 'Montserrat', sans-serif; /* Applied Montserrat */
+            color: var(--text-color-primary);
+        }
+
+        .section-title.animated {
+            opacity: 1; /* Visible when animated */
+            transform: translateY(0); /* Move to original position */
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            color: var(--text-color-secondary); /* Lighter grey for readability */
+            margin-bottom: 4rem; /* Added space here */
+        }
+
+        .about-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 160px; /* Smaller min-width */
+            max-width: 220px; /* Smaller max-width */
+            padding: 1.5rem; /* Reduced padding */
+            background: var(--card-bg); /* Semi-transparent white background */
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Keep a subtle border */
+            /* Neumorphic shadow for dark theme */
+            box-shadow: 6px 6px 12px var(--card-shadow-dark), -6px -6px 12px var(--card-shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body.light-theme .stat-item {
+            /* Neumorphic shadow for light theme */
+            box-shadow: 6px 6px 12px var(--neumorphic-shadow-dark), -6px -6px 12px var(--neumorphic-shadow-light);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(107, 72, 255, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3.8rem; /* Smaller font size */
+            font-weight: 700;
+            margin-bottom: 0.8rem; /* Reduced margin */
+            /* Gradient text effect */
+            background: linear-gradient(45deg, #ff6b6b, #4b8bb7, #69db7c); /* Red-Blue-Green gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent; /* Fallback for non-webkit browsers */
+            display: inline-block; /* Required for background-clip to work */
+            animation: gradientShift 5s ease infinite alternate; /* Smooth gradient animation */
+            font-family: 'Montserrat', sans-serif; /* Applied Montserrat */
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .stat-label {
+            font-size: 1.4rem; /* Smaller font size */
+            color: var(--text-color-secondary);
+        }
+
+
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid for project cards */
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg); /* Semi-transparent white background */
+            border-radius: 15px;
+            padding: 2rem; /* Added padding for icon and text */
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease; /* Smooth hover effects */
+            border: 2px solid transparent; /* Transparent border initially */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* Neumorphic shadow for dark theme */
+            box-shadow: 6px 6px 12px var(--card-shadow-dark), -6px -6px 12px var(--card-shadow-light);
+        }
+
+        body.light-theme .project-card {
+            /* Neumorphic shadow for light theme */
+            box-shadow: 6px 6px 12px var(--neumorphic-shadow-dark), -6px -6px 12px var(--neumorphic-shadow-light);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px); /* Lift up on hover */
+            box-shadow: 0 10px 30px rgba(75, 139, 183, 0.2);
+            border-color: #7038c9;
+        }
+
+        /* Styling for project icon containers (now divs with background images) */
+        .project-icon {
+            width: 60px; /* Smaller width for icons */
+            height: 60px; /* Smaller height for icons */
+            border-radius: 50%; /* Make them circular */
+            margin-bottom: 1.5rem; /* Space between icon and title */
+            transition: transform 0.3s ease;
+            background-size: contain; /* Ensure image fits without cropping */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent image repetition */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for icons */
+            display: flex; /* Use flex to center any fallback content if needed */
+            align-items: center;
+            justify-content: center;
+            /* Fallback background color if image fails to load */
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.1); /* Slightly enlarge icon on card hover */
+        }
+
+        .project-content {
+            padding: 0; /* Removed padding as it's now on .project-card */
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            color: #8651d9; /* Purple color for project titles */
+            margin-bottom: 1rem; /* Adjusted margin */
+            font-family: 'Montserrat', sans-serif; /* Applied Montserrat */
+        }
+
+        .project-card p {
+            font-size: 1.2rem;
+            color: var(--text-color-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-link {
+            font-size: 1.2rem;
+            color: #8651d9; /* Purple color for links */
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #69db7c; /* Green color on hover */
+            text-decoration: underline;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjusted min-width for smaller cards */
+            gap: 2rem; /* Reduced gap */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem; /* Reduced padding */
+            text-align: left;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Keep a subtle border */
+            /* Neumorphic shadow for dark theme */
+            box-shadow: 6px 6px 12px var(--card-shadow-dark), -6px -6px 12px var(--card-shadow-light);
+        }
+
+        body.light-theme .skill-card {
+            /* Neumorphic shadow for light theme */
+            box-shadow: 6px 6px 12px var(--neumorphic-shadow-dark), -6px -6px 12px var(--neumorphic-shadow-light);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px); /* Lift up on hover */
+            box-shadow: 0 8px 25px rgba(107, 72, 255, 0.3); /* Purple shadow on hover */
+            border-color: rgba(255, 215, 0, 0.5); /* Gold border on hover */
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem; /* Reduced gap */
+            margin-bottom: 1.5rem; /* Reduced margin */
+        }
+
+        .skill-icon {
+            font-size: 2rem; /* Smaller font size */
+            padding: 0.8rem; /* Reduced padding */
+            border-radius: 50%;
+            width: 40px; /* Smaller width */
+            height: 40px; /* Smaller height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(107, 72, 255, 0.1); /* Semi-transparent purple background for icons */
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: scale(1.1); /* Enlarge icon on card hover */
+        }
+
+        /* Specific skill icon colors */
+        .skill-icon.python { color: #3776AB; }
+        .skill-icon.powerbi { color: #F2C811; }
+        .skill-icon.sql { color: #00758F; }
+        .skill-icon.ml { color: #A61C3C; }
+        .skill-icon.us-healthcare { color: #2ecc71; }
+        .skill-icon.graphic-design { color: #e74c3c; }
+        .skill-icon.ms-excel { color: #27ae60; }
+        .skill-icon.html-css { color: #3498db; }
+
+        .skill-card h3 {
+            font-size: 1.6rem; /* Smaller font size */
+            color: var(--text-color-primary);
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif; /* Applied Montserrat */
+        }
+
+        .skill-progress {
+            width: 100%;
+            height: 20px; /* Thinner progress bar */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px; /* Adjusted border-radius */
+            padding: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 0; /* Starts at 0, animated by JS */
+            height: 100%;
+            background: linear-gradient(90deg, gold, #c85, gold); /* Gold gradient */
+            background-size: 200% 100%; /* For shine animation */
+            border-radius: 8px; /* Adjusted border-radius */
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.7); /* Gold glow */
+            transition: width 1.5s ease-out; /* Smooth width animation */
+            position: relative;
+            animation: shine 4s ease-in infinite; /* Shine effect */
+        }
+
+        @keyframes shine {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .progress-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem; /* Smaller font size */
+            color: #fff;
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            opacity: 0; /* Hidden initially */
+            transition: opacity 0.5s ease 0.5s; /* Fade in after width animation starts */
+        }
+
+        .progress-bar.animated .progress-value {
+            opacity: 1; /* Visible when animated */
+        }
+
+        /* Timeline Styling (Education & Experience) */
+        .section-timeline,
+        .experience {
+            padding: 8rem 0;
+        }
+
+        .timeline_component {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            display: flex; /* Use flexbox for the main component */
+            flex-direction: column; /* Stack items vertically */
+            align-items: flex-start; /* Align all items to the left */
+        }
+
+        .timeline_progress {
+            position: absolute;
+            left: 9%; /* Position the line on the left side */
+            transform: translateX(-50%); /* Adjust for line width to be truly on the edge */
+            top: 0;
+            bottom: 0;
+            width: 6px; /* Slightly thicker line */
+            background: var(--timeline-line-bg); /* Slightly more visible line */
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2); /* Subtle cyan glow */
+            transition: background 0.3s ease;
+        }
+
+        .timeline_progress-bar {
+            width: 100%;
+            background: linear-gradient(to bottom, #7038c9, #00ddeb); /* More distinct gradient */
+            height: 0; /* Starts at 0, animated by JS */
+            transition: height 0.5s ease; /* Smooth height animation */
+            box-shadow: 0 0 20px rgba(112, 56, 201, 0.7); /* Stronger purple glow */
+            position: absolute;
+            top: 0;
+        }
+
+        .timeline_item {
+            display: flex;
+            align-items: center; /* Vertically align content and circle */
+            width: 100%;
+            max-width: 900px; /* Control overall width of the item */
+            margin-bottom: 5rem; /* Space between items */
+            position: relative;
+            opacity: 0; /* Hidden initially */
+            transform: translateY(50px); /* Moved down initially */
+            transition: all 0.8s ease; /* Smooth animation on scroll */
+            justify-content: flex-start; /* Align card content to the left */
+        }
+
+        .timeline_item.visible {
+            opacity: 1; /* Visible when animated */
+            transform: translateY(0); /* Move to original position */
+        }
+
+        .timeline_content_wrapper {
+            text-align: left; /* Text aligns to the left */
+            padding-left: 55px; /* Increased space for the circle and line */
+            flex: 1; /* Take up available space */
+            max-width: calc(100% - 80px); /* Adjusted width to account for increased padding */
+        }
+
+        .timeline_circle {
+            width: 30px; /* Smaller size for icons */
+            height: 30px; /* Smaller size for icons */
+            background: linear-gradient(45deg, #7038c9, #00ddeb); /* Gradient for the circle */
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.4rem; /* Adjusted icon size */
+            box-shadow: 0 0 10px rgba(112, 56, 201, 0.8); /* Stronger purple glow */
+            animation: pulse 2s infinite ease-in-out; /* Smoother pulse animation */
+            flex-shrink: 0; /* Prevent circle from shrinking */
+            border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+            margin-right: 15px; /* Space between circle and card */
+            margin-left: -15px; /* Pull circle onto the line */
+        }
+
+        /* Refined pulse animation */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 5px rgba(112, 56, 201, 0.7), 0 0 0 0 rgba(112, 56, 201, 0.4); }
+            50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(112, 56, 201, 0.9), 0 0 0 8px rgba(112, 56, 201, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 5px rgba(112, 56, 201, 0.7), 0 0 0 0 rgba(112, 56, 201, 0.4); }
+        }
+
+        .timeline_card {
+            background: var(--card-bg); /* Use CSS variable */
+            border-radius: 12px; /* Slightly more rounded corners */
+            padding: 1.5rem; /* Increased padding for better content spacing */
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            border: none; /* Removed border */
+            /* Neumorphic shadow for dark theme */
+            box-shadow: 6px 6px 12px var(--card-shadow-dark), -6px -6px 12px var(--card-shadow-light);
+            position: relative; /* For the colored border effect */
+        }
+
+        body.light-theme .timeline_card {
+            /* Neumorphic shadow for light theme */
+            box-shadow: 6px 6px 12px var(--neumorphic-shadow-dark), -6px -6px 12px var(--neumorphic-shadow-light);
+        }
+
+        .timeline_card:hover {
+            background: var(--card-bg); /* Keep background consistent, only shadow changes */
+            transform: translateY(-4px); /* Slightly less lift for neumorphism */
+            box-shadow: 3px 3px 6px var(--card-shadow-dark), -3px -3px 6px var(--card-shadow-light); /* Subtle press effect */
+        }
+
+        .timeline_date-text {
+            font-size: 1.5rem; /* Slightly larger font for date */
+            color: var(--text-color-secondary);
+            font-weight: 500;
+            margin-bottom: 0.8rem; /* Increased space between date and card */
+        }
+
+        .timeline_card h3 {
+            font-size: 1.8rem; /* Adjusted font size */
+            color: var(--text-color-primary);
+            margin-bottom: 5px; /* Reduced margin */
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif; /* Applied Montserrat */
+        }
+
+        .timeline_card h4 {
+            font-size: 1.4rem; /* Adjusted font size */
+            color: var(--text-color-secondary);
+            margin-bottom: 8px; /* Reduced margin */
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif; /* Applied Montserrat */
+        }
+
+        .timeline_text {
+            font-size: 1.3rem; /* Adjusted font size */
+            color: var(--text-color-secondary);
+            line-height: 1.5; /* Adjusted line height for better readability */
+        }
+
+        .internship-text {
+            font-size: 1.1rem; /* Slightly larger font for internship */
+            color: var(--text-color-secondary);
+            margin-left: 0.5rem; /* Small space after designation */
+            font-weight: 400;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            padding: 5rem;
+        }
+
+        .contact-content {
+            display: flex;
+            justify-content: center; /* Changed to center for better alignment */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            width: 80%;
+            max-width: 1000px; /* Keep max-width for overall layout */
+            padding: 0;
+            margin-top: 0;
+            gap: 2rem; /* Added gap for spacing between form and info */
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px; /* Ensure form doesn't get too small */
+            padding: 2rem;
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            padding: 1rem;
+            color: var(--text-color-primary);
+            font-size: 1.5rem;
+            border-radius: 5px;
+            width: 100%;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            /* Neumorphic shadow for inputs */
+            box-shadow: inset 2px 2px 5px var(--neumorphic-shadow-dark), inset -5px -5px 10px var(--neumorphic-shadow-light);
+        }
+
+        body.light-theme .contact-form input,
+        body.light-theme .contact-form textarea {
+            box-shadow: inset 2px 2px 5px var(--neumorphic-shadow-dark), inset -5px -5px 10px var(--neumorphic-shadow-light);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--input-placeholder);
+        }
+
+        .contact-form input {
+            flex: 1;
+        }
+
+        .contact-form textarea {
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 145px;
+        }
+
+        .contact-form .btn {
+            align-self: flex-start; /* Align button to the left */
+            margin-top: 1rem;
+            padding: 0.8rem 2rem; /* Reduced padding for smaller button */
+            font-size: 1.4rem; /* Reduced font size for smaller button */
+            /* Neumorphic shadow for buttons */
+            box-shadow: 6px 6px 12px var(--card-shadow-dark), -6px -6px 12px var(--card-shadow-light);
+        }
+
+        body.light-theme .contact-form .btn {
+            box-shadow: 6px 6px 12px var(--neumorphic-shadow-dark), -6px -6px 12px var(--neumorphic-shadow-light);
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 250px; /* Ensure info section doesn't get too small */
+            padding: 2rem;
+            text-align: left; /* Align text to left within info box */
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: var(--text-color-secondary);
+            margin-bottom: 2.5rem;
+            font-family: 'Montserrat', sans-serif; /* Applied Montserrat */
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color-secondary);
+        }
+
+        .contact-info i {
+            margin-right: 1rem;
+            color: #caced5; /* Light grey for icons */
+        }
+
+        .social-links-container {
+            flex-basis: 100%; /* Take full width below form/info */
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .social-links-container h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif; /* Applied Montserrat */
+            color: var(--text-color-primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000000; /* Black footer */
+            color: var(--text-color-primary);
+            text-align: center;
+            padding: 2.5rem 0;
+            margin-top: auto; /* Push footer to the bottom */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--text-color-secondary);
+            margin-top: 1rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top-btn {
+            position: fixed;
+            bottom: 30px; /* Increased bottom margin */
+            right: 30px; /* Increased right margin */
+            z-index: 99;
+            width: 40px; /* Smaller */
+            height: 40px; /* Smaller */
+            border-radius: 50%;
+            background: var(--back-to-top-bg); /* Gradient with transparency */
+            color: white;
+            font-size: 2rem; /* Smaller icon */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0; /* Hidden by default */
+            visibility: hidden; /* Hidden by default */
+        }
+
+        .back-to-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-5px); /* Slight lift when visible */
+        }
+
+        .back-to-top-btn:hover {
+            background: linear-gradient(45deg, rgba(112, 56, 201, 0.8), rgba(0, 221, 235, 0.8)); /* Less transparent on hover */
+            transform: translateY(-8px) scale(1.1); /* More pronounced lift and scale */
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle-container {
+            margin-left: 4rem; /* Space from last nav item */
+            display: flex;
+            align-items: center;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px; /* Smaller width */
+            height: 24px; /* Smaller height */
+            border-radius: 12px; /* Half of height for pill shape */
+            background: var(--neumorphic-bg);
+            /* Neumorphic shadow for toggle switch */
+            box-shadow: 4px 4px 8px var(--neumorphic-shadow-dark), -4px -4px 8px var(--neumorphic-shadow-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        body.light-theme .toggle-switch {
+            box-shadow: 4px 4px 8px var(--neumorphic-shadow-dark), -4px -4px 8px var(--neumorphic-shadow-light);
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* To push icons to ends */
+            padding: 0 4px; /* Reduced padding for icons */
+            background-color: var(--toggle-slider-bg-off);
+        }
+
+        .toggle-slider::before {
+            position: absolute;
+            content: "";
+            height: 18px; /* Smaller thumb */
+            width: 18px; /* Smaller thumb */
+            left: 3px; /* Adjust left position */
+            bottom: 3px; /* Adjust bottom position */
+            background-color: var(--toggle-thumb-bg); /* White thumb */
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.3), -1px -1px 3px rgba(255,255,255,0.2); /* Smaller shadow for thumb */
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background-color: var(--toggle-slider-bg-on); /* Yellow background for ON state */
+        }
+
+        .toggle-switch input:checked + .toggle-slider::before {
+            transform: translateX(24px); /* Adjust transform for new width (48px - 18px thumb - 2*3px padding) */
+        }
+
+        /* Removed .toggle-icon, .moon-icon-fa, .sun-icon-fa styles as icons are no longer used */
+
+        /* Responsive Design for Android */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem 5%;
+            }
+
+            .fixed-name {
+                margin-bottom: 1rem;
+            }
+
+            nav {
+                flex-direction: column; /* Stack nav items vertically */
+                align-items: center;
+            }
+
+            nav a {
+                margin: 1rem 0; /* Adjust margin for vertical stacking */
+                font-size: 1.6rem;
+            }
+
+            .theme-toggle-container {
+                margin-left: 0; /* Remove horizontal margin */
+                margin-top: 1.5rem; /* Add vertical margin */
+            }
+
+            .home {
+                flex-direction: column;
+                text-align: center;
+                padding: 6rem 5% 3rem;
+                gap: 4rem;
+            }
+
+            .home-content {
+                align-items: center; /* Center content for mobile */
+            }
+
+            .home-content h1 {
+                font-size: 3rem;
+            }
+
+            .home-content h3 {
+                font-size: 2.5rem;
+            }
+
+            .home-content p {
+                font-size: 1.4rem;
+            }
+
+            .home-img img {
+                width: 50vw;
+                max-width: 200px;
+            }
+
+            .social-icons {
+                margin: 2rem 0;
+            }
+
+            .social-icons a {
+                width: 3.5rem;
+                height: 3.5rem;
+                font-size: 1.8rem;
+                margin: 0 1rem;
+            }
+
+            .btn {
+                padding: 0.8rem 2rem;
+                font-size: 1.4rem;
+            }
+
+            .typing-text {
+                font-size: 2.5rem;
+                min-width: 200px;
+            }
+
+            .typing-text span::after {
+                height: 30px;
+            }
+
+            /* About Section Responsive */
+            .about-content p {
+                font-size: 1.6rem;
+            }
+
+            .about-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .stat-item {
+                font-size: 3.5rem;
+                max-width: unset; /* Remove max-width on smaller screens */
+            }
+
+            .stat-label {
+                font-size: 1.4rem;
+            }
+
+            /* Projects Section */
+            .projects {
+                padding: 4rem 5%;
+            }
+
+            .projects-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1rem;
+            }
+
+            .project-icon {
+                width: 60px; /* Smaller icon size on mobile */
+                height: 60px; /* Smaller icon size on mobile */
+                margin-bottom: 1rem;
+            }
+
+            .project-card h3 {
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+            }
+
+            .project-card p {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+
+            /* Skills Section */
+            .skills {
+                padding: 4rem 5%;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr; /* Single column for better stacking */
+                gap: 1.5rem;
+                padding: 1rem;
+            }
+
+            .skill-card {
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+                max-width: unset; /* Remove max-width on smaller screens */
+            }
+
+            .skill-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 2rem;
+            }
+
+            .skill-card h3 {
+                font-size: 1.6rem;
+            }
+
+            .skill-progress {
+                height: 20px;
+            }
+
+            .progress-value {
+                font-size: 1.2rem;
+            }
+
+            /* Experience & Education (Timeline) - Mobile Adjustments */
+            .section-timeline,
+            .experience {
+                padding: 4rem 5%;
+            }
+
+            .timeline_component {
+                padding: 1rem;
+                margin: 1rem auto;
+                align-items: flex-start; /* Align items to the left */
+            }
+
+            .timeline_progress {
+                left: 20px; /* Adjust line position for mobile */
+                transform: translateX(-50%);
+            }
+
+            .timeline_item {
+                flex-direction: row; /* Ensure flex-direction is row for mobile */
+                justify-content: flex-start; /* Align content to the right of the line */
+                max-width: 100%; /* Use full width */
+                padding-left: 50px; /* Adjusted space for the line and circle */
+            }
+
+            .timeline_content_wrapper {
+                text-align: left; /* All content aligns left */
+                padding-left: 20px; /* Adjusted padding for mobile */
+                padding-right: 0; /* Remove right padding */
+                max-width: calc(100% - 70px); /* Adjusted width for mobile to prevent overflow */
+            }
+
+            .timeline_circle {
+                margin-right: 15px; /* Keep space between circle and card */
+                margin-left: -22px; /* Pull circle onto the line */
+            }
+
+            .timeline_date-text {
+                margin-bottom: 0.5rem; /* Smaller margin for date */
+            }
+
+            .timeline_card {
+                padding: 1rem; /* Smaller padding for cards */
+            }
+
+            .timeline_card h3 {
+                font-size: 1.6rem;
+            }
+
+            .timeline_card h4 {
+                font-size: 1.4rem;
+            }
+
+            .timeline_text {
+                font-size: 1.2rem;
+                line-height: 1.4;
+            }
+
+            /* Theme Toggle Button Responsive */
+            .toggle-switch {
+                width: 48px; /* Smaller width */
+                height: 24px; /* Smaller height */
+            }
+            .toggle-slider::before {
+                height: 18px;
+                width: 18px;
+                left: 3px;
+                bottom: 3px;
+            }
+            .toggle-switch input:checked + .toggle-slider::before {
+                transform: translateX(24px); /* Adjust for smaller width */
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Further adjustments for smaller Android screens */
+            html {
+                font-size: 55%; /* Slightly smaller base font for readability */
+            }
+
+            header {
+                padding: 0.8rem 3%;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 1.4rem;
+            }
+
+            .home {
+                padding: 4rem 3%;
+                gap: 2rem;
+            }
+
+            .home-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .home-content h3 {
+                font-size: 2rem;
+            }
+
+            .home-content p {
+                font-size: 1.4rem;
+            }
+
+            .home-img img {
+                width: 60vw;
+                max-width: 150px;
+            }
+
+            .social-icons {
+                margin: 1.5rem 0;
+            }
+
+            .social-icons a {
+                width: 3rem;
+                height: 3rem;
+                font-size: 1.6rem;
+                margin: 0 0.8rem;
+            }
+
+            .btn {
+                padding: 0.7rem 1.8rem;
+                font-size: 1.2rem;
+            }
+
+            .typing-text {
+                font-size: 2rem;
+                min-width: 180px;
+            }
+
+            .typing-text span::after {
+                height: 25px;
+            }
+
+            /* About Section Responsive */
+            .about-content p {
+                font-size: 1.4rem;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+
+            .stat-label {
+                font-size: 1.2rem;
+            }
+
+            /* Projects Section - Even Shorter on Very Small Screens */
+            .projects {
+                padding: 3rem 3%;
+            }
+
+            .projects-container {
+                gap: 1rem;
+            }
+
+            .project-icon {
+                font-size: 3rem; /* Even smaller icon size on very small mobile */
+            }
+
+            .project-card h3 {
+                font-size: 1.4rem;
+            }
+
+            .project-card p {
+                font-size: 1.1rem;
+            }
+
+            /* Skills Section - Even Shorter on Very Small Screens */
+            .skills {
+                padding: 3rem 3%;
+            }
+
+            .skill-card {
+                padding: 1rem;
+            }
+
+            .skill-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1.8rem;
+            }
+
+            .skill-card h3 {
+                font-size: 1.4rem;
+            }
+
+            .skill-progress {
+                height: 15px;
+            }
+
+            .progress-value {
+                font-size: 1rem;
+            }
+
+            /* Experience & Education (Timeline) - Even Shorter on Very Small Screens */
+            .section-timeline,
+            .experience {
+                padding: 3rem 3%;
+            }
+
+            .timeline_component {
+                padding: 0.5rem;
+                margin: 0.5rem auto;
+            }
+
+            .timeline_item {
+                margin-bottom: 2rem;
+            }
+
+            .timeline_date-text {
+                font-size: 1.2rem;
+            }
+
+            .timeline_card h3 {
+                font-size: 1.4rem;
+            }
+
+            .timeline_card h4 {
+                font-size: 1.2rem;
+            }
+
+            .timeline_text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Space Background Container -->
+    <div class="space-background">
+        <!-- These are the "stars" and other space elements -->
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+    </div>
+
+    <!-- Main Content Wrapper to keep your content above the background -->
+    <div class="main-content-wrapper">
+        <header>
+            <a href="#home" class="fixed-name">Saurav Ojha</a>
+            <nav>
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#education">Education</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+                <!-- Theme Toggle Button moved inside nav -->
+                <div class="theme-toggle-container">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="toggle-slider">
+                            <!-- Icons removed, relying on slider visual state -->
+                        </span>
+                    </label>
+                </div>
+            </nav>
+        </header>
+
+        <section id="home" class="home">
+            <div class="home-content">
+                <h1>Hi, I'm <span>Saurav Ojha</span></h1>
+                <div class="typing-text">
+                    <h3>And I'm a <span></span></h3>
+                </div>
+                <p>A passionate data analyst with expertise in Python, Power BI, SQL, and Machine Learning. I love turning data into actionable insights.</p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/sauravojha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/lightwordz" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+                <a href="#" class="btn">Download CV</a>
+            </div>
+            <div class="home-img">
+                <img src="https://raw.githubusercontent.com/Eeeeco/Portfolio/main/Mee.png" alt="Profile Picture">
+            </div>
+        </section>
+
+        <!-- New About Me Section -->
+        <section id="about" class="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>I am a dedicated and results-driven Data Analyst with a strong foundation in Python, Power BI, SQL, and Machine Learning. My passion lies in transforming complex datasets into clear, actionable insights that drive strategic business decisions. With experience in healthcare revenue cycle management and a keen eye for detail, I excel at identifying trends, building predictive models, and creating impactful data visualizations. I am constantly seeking new challenges and opportunities to leverage data for problem-solving and innovation.</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="4">0</div>
+                        <div class="stat-label">Years of Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="6.82">0.00</div>
+                        <div class="stat-label">CGPA (MBA)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="5">0</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <!-- Using div with background-image for custom PNG -->
+                    <div class="project-icon" style="background-image: url('https://raw.githubusercontent.com/Eeeeco/Portfolio/main/health.png');"></div>
+                    <div class="project-content">
+                        <h3>Heart Disease Prediction</h3>
+                        <p>Analyzed patient data to identify trends and improve healthcare outcomes.</p>
+                        <a href="https://github.com/yourusername" target="_blank" class="project-link">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <!-- Using div with background-image for custom PNG -->
+                    <div class="project-icon" style="background-image: url('https://raw.githubusercontent.com/Eeeeco/Portfolio/main/green-cross.png');"></div>
+                    <div class="project-content">
+                        <h3>Insurance Claims Prediction</h3>
+                        <p>Developed a model to predict insurance claim likelihood.</p>
+                        <a href="https://github.com/yourusername" target="_blank" class="project-link">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <!-- Using div with background-image for custom PNG -->
+                    <div class="project-icon" style="background-image: url('https://raw.githubusercontent.com/Eeeeco/Portfolio/main/bike.png');"></div>
+                    <div class="project-content">
+                        <h3>Bike Rental Analysis</h3>
+                        <p>Analyzed bike rental data to optimize inventory and pricing.</p>
+                        <a href="https://github.com/yourusername" target="_blank" class="project-link">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <!-- Using div with background-image for custom PNG -->
+                    <div class="project-icon" style="background-image: url('https://raw.githubusercontent.com/Eeeeco/Portfolio/main/home.png');"></div>
+                    <div class="project-content">
+                        <h3>House Price Prediction</h3>
+                        <p>Built a machine learning model to predict house prices based on various features.</p>
+                        <a href="https://github.com/yourusername" target="_blank" class="project-link">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card" data-progress="90">
+                    <div class="skill-header">
+                        <div class="skill-icon python"><i class="fab fa-python"></i></div>
+                        <h3>Python</h3>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="progress-bar">
+                            <span class="progress-value">90%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card" data-progress="80">
+                    <div class="skill-header">
+                        <div class="skill-icon powerbi"><i class="fas fa-chart-bar"></i></div>
+                        <h3>Power BI</h3>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="progress-bar">
+                            <span class="progress-value">80%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card" data-progress="90">
+                    <div class="skill-header">
+                        <div class="skill-icon sql"><i class="fas fa-database"></i></div>
+                        <h3>SQL</h3>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="progress-bar">
+                            <span class="progress-value">90%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card" data-progress="80">
+                    <div class="skill-header">
+                        <div class="skill-icon ml"><i class="fas fa-brain"></i></div>
+                        <h3>Machine Learning</h3>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="progress-bar">
+                            <span class="progress-value">80%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card" data-progress="80">
+                    <div class="skill-header">
+                        <div class="skill-icon us-healthcare"><i class="fas fa-hospital"></i></div>
+                        <h3>US Healthcare</h3>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="progress-bar">
+                            <span class="progress-value">80%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card" data-progress="60">
+                    <div class="skill-header">
+                        <div class="skill-icon graphic-design"><i class="fas fa-paint-brush"></i></div>
+                        <h3>Graphic Design</h3>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="progress-bar">
+                            <span class="progress-value">60%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card" data-progress="90">
+                    <div class="skill-header">
+                        <div class="skill-icon ms-excel"><i class="fas fa-file-excel"></i></div>
+                        <h3>MS Excel</h3>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="progress-bar">
+                            <span class="progress-value">90%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card" data-progress="40">
+                    <div class="skill-header">
+                        <div class="skill-icon html-css"><i class="fas fa-code"></i></div>
+                        <h3>HTML & CSS</h3>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="progress-bar">
+                            <span class="progress-value">40%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section-timeline">
+            <h2 class="section-title">My Education</h2>
+            <div class="timeline_component">
+                <div class="timeline_progress">
+                    <div class="timeline_progress-bar"></div>
+                </div>
+                <div class="timeline_item">
+                    <div class="timeline_circle"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="timeline_content_wrapper">
+                        <div class="timeline_date-text">2021 - 2023</div>
+                        <div class="timeline_card">
+                            <h3>MBA in Business Analytics</h3>
+                            <h4>UPES University</h4>
+                            <div class="timeline_text">Specialized in Business Analytics, Data Science & Machine Learning. Completed coursework in Financial management, database management, and AI.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline_item">
+                    <div class="timeline_circle"><i class="fas fa-school"></i></div>
+                    <div class="timeline_content_wrapper">
+                        <div class="timeline_date-text">2017 - 2020</div>
+                        <div class="timeline_card">
+                            <h3>Bachelor of Commerce</h3>
+                            <h4>IGNOU University</h4>
+                            <div class="timeline_text">Majored in accounting with a focus on Business laws & Management.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline_item">
+                    <div class="timeline_circle"><i class="fas fa-school"></i></div>
+                    <div class="timeline_content_wrapper">
+                        <div class="timeline_date-text">2015 - 2017</div>
+                        <div class="timeline_card">
+                            <h3>Senior Secondary</h3>
+                            <h4>Bhagirath Public School</h4>
+                            <div class="timeline_text">Completed Senior Secondary education with a focus on Commerce and Economics.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="experience">
+            <h2 class="section-title">My Experience</h2>
+            <div class="timeline_component">
+                <div class="timeline_progress">
+                    <div class="timeline_progress-bar"></div>
+                </div>
+                <!-- New Experience Entry: Rubixe AI -->
+                <div class="timeline_item">
+                    <div class="timeline_circle"><i class="fas fa-flask"></i></div> <!-- Using a flask icon for Data Scientist -->
+                    <div class="timeline_content_wrapper">
+                        <div class="timeline_date-text">2024 - 2025</div>
+                        <div class="timeline_card">
+                            <h3>Data Scientist Consultant <span class="internship-text">(Internship)</span></h3>
+                            <h4>Rubixe AI</h4>
+                            <div class="timeline_text">Gained practical experience in data science, contributing to AI-driven projects and developing machine learning models.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline_item">
+                    <div class="timeline_circle"><i class="fas fa-briefcase"></i></div>
+                    <div class="timeline_content_wrapper">
+                        <div class="timeline_date-text">2023 - Present</div>
+                        <div class="timeline_card">
+                            <h3>Senior Executive</h3>
+                            <h4>Pacific Global</h4>
+                            <div class="timeline_text">Leveraged analytical skills to interpret complex data, identify trends, and provide actionable insights within the healthcare revenue cycle.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline_item">
+                    <div class="timeline_circle"><i class="fas fa-briefcase"></i></div>
+                    <div class="timeline_content_wrapper">
+                        <div class="timeline_date-text">2021 - 2023</div>
+                        <div class="timeline_card">
+                            <h3>Analyst 2</h3>
+                            <h4>R1RCM</h4>
+                            <div class="timeline_text">Performed advanced data analysis and predictive modeling for healthcare claims.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline_item">
+                    <div class="timeline_circle"><i class="fas fa-briefcase"></i></div>
+                    <div class="timeline_content_wrapper">
+                        <div class="timeline_date-text">2020 - 2021</div>
+                        <div class="timeline_card">
+                            <h3>Associate</h3>
+                            <h4>Tech Mahindra</h4>
+                            <div class="timeline_text">Handled data processing, reporting, and analysis tasks to support client decision-making.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline_item">
+                    <div class="timeline_circle"><i class="fas fa-headset"></i></div>
+                    <div class="timeline_content_wrapper">
+                        <div class="timeline_date-text">2019 - 2020</div>
+                        <div class="timeline_card">
+                            <h3>Customer Service Executive</h3>
+                            <h4>iEnergizer</h4>
+                            <div class="timeline_text">Provided customer support, resolved queries, and maintained high service standards in a fast-paced environment.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-container">
+                <div class="contact-content">
+                    <div class="contact-form">
+                        <form action="#" method="post">
+                            <div class="form-row">
+                                <input type="text" name="name" placeholder="Your Name" required>
+                                <input type="email" name="email" placeholder="Your Email" required>
+                            </div>
+                            <textarea name="message" placeholder="Your Message" required></textarea>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p><i class="fas fa-envelope"></i> sauravojha124@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> +1 123 456 7890</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Noida, India</p>
+                    </div>
+                    <div class="social-links-container">
+                        <h2>Social Links</h2>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/sauravojha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/lightwordz" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-container">
+                <div class="copyright">© 2024 Saurav Ojha. All rights reserved.</div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top-btn" id="backToTopBtn">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Function to check if an element is in viewport
+        function isInViewport(element, offset = 0) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) - offset &&
+                rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
+                rect.bottom >= offset &&
+                rect.right >= 0
+            );
+        }
+
+        // Function for number count animation
+        function animateValue(obj, start, end, duration, isFloat = false) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                let value = start + progress * (end - start);
+                if (isFloat) {
+                    obj.innerHTML = value.toFixed(2);
+                } else {
+                    obj.innerHTML = Math.floor(value);
+                }
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Keep track of animated stats to prevent re-animation on every scroll
+        const animatedStats = new Set();
+
+        window.addEventListener('scroll', () => {
+            // Header (navigation) fade effect
+            const header = document.querySelector('header');
+            const homeTitle = document.querySelector('.home-content h1');
+            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Check if homeTitle exists before trying to get its properties
+            if (homeTitle) {
+                const titleTop = homeTitle.getBoundingClientRect().top + window.pageYOffset;
+                const scrollPosition = window.pageYOffset;
+
+                // If scrolled past the home section title, hide header, else show it
+                if (scrollPosition >= titleTop + homeTitle.offsetHeight) {
+                    header.style.opacity = '0';
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.opacity = '1';
+                    header.style.transform = 'translateY(0)';
+                }
+            }
+
+            // Timeline Progress Bar Animation
+            const timelineComponents = document.querySelectorAll('.timeline_component');
+            timelineComponents.forEach(component => {
+                const componentTop = component.getBoundingClientRect().top;
+                const componentHeight = component.offsetHeight;
+                const viewportHeight = window.innerHeight;
+
+                let progress = 0;
+                // Calculate progress based on how much of the component is in view
+                if (componentTop < viewportHeight && componentTop + componentHeight > 0) {
+                    const scrolledDistance = viewportHeight - componentTop;
+                    progress = Math.min((scrolledDistance / componentHeight) * 100, 100);
+                }
+                progress = Math.max(progress, 0); // Ensure progress is not negative
+
+                component.querySelector('.timeline_progress-bar').style.height = `${progress}%`;
+
+                // Animate timeline items
+                const items = component.querySelectorAll('.timeline_item');
+                items.forEach(item => {
+                    // Make items visible when they are within 80% of the viewport height
+                    if (isInViewport(item, item.offsetHeight * 0.2)) { // Offset to trigger animation slightly before fully in view
+                        item.classList.add('visible');
+                    } else {
+                        // Optionally remove 'visible' class if you want them to re-animate on scroll back up
+                        // item.classList.remove('visible');
+                    }
+                });
+            });
+
+            // Skills Progress Animation
+            const skillCards = document.querySelectorAll('.skill-card');
+            skillCards.forEach(card => {
+                const progressBar = card.querySelector('.progress-bar');
+                const progressValue = card.getAttribute('data-progress');
+
+                // Animate skill bars when they enter the viewport
+                if (isInViewport(card, card.offsetHeight * 0.2) && !progressBar.classList.contains('animated')) {
+                    progressBar.style.width = `${progressValue}%`;
+                    progressBar.classList.add('animated');
+                } else if (!isInViewport(card) && progressBar.classList.contains('animated')) {
+                    // Optional: Reset animation if scrolled out of view
+                    // progressBar.style.width = `0%`;
+                    // progressBar.classList.remove('animated');
+                }
+            });
+
+            // Section Title Animation
+            const sectionTitles = document.querySelectorAll('.section-title');
+            sectionTitles.forEach(title => {
+                // Animate section titles when they enter the viewport
+                if (isInViewport(title, title.offsetHeight * 0.5) && !title.classList.contains('animated')) {
+                    title.classList.add('animated');
+                } else if (!isInViewport(title) && title.classList.contains('animated')) {
+                    // Optional: Reset animation if scrolled out of view
+                    // title.classList.remove('animated');
+                }
+            });
+
+            // About Me Stats Number Animation
+            const statItems = document.querySelectorAll('.stat-item');
+            statItems.forEach(item => {
+                const statNumberElement = item.querySelector('.stat-number');
+                const targetValue = parseFloat(statNumberElement.getAttribute('data-target'));
+                const id = item.id || statNumberElement.id || `stat-${targetValue}`; // Unique ID for tracking
+
+                if (isInViewport(item, item.offsetHeight * 0.5) && !animatedStats.has(id)) {
+                    const isFloat = targetValue % 1 !== 0; // Check if it's a float
+                    animateValue(statNumberElement, 0, targetValue, 2000, isFloat); // 2000ms = 2 seconds
+                    animatedStats.add(id); // Mark as animated
+                }
+            });
+
+
+            // Active navigation link highlighting based on scroll position
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // Adjust this offset based on your header height or desired scroll point
+                const offset = 100;
+
+                if (window.pageYOffset >= sectionTop - offset && window.pageYOffset < sectionTop + sectionHeight - offset) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + section.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+
+            // Show/hide back to top button
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            if (window.pageYOffset > 300) { // Show button after scrolling 300px down
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                document.body.classList.add('light-theme');
+            } else {
+                document.body.classList.remove('light-theme');
+            }
+            // Store user's preference in local storage
+            localStorage.setItem('theme', themeToggle.checked ? 'light' : 'dark');
+        });
+
+        // Apply saved theme on load
+        window.addEventListener('load', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                themeToggle.checked = true;
+            } else {
+                document.body.classList.remove('light-theme');
+                themeToggle.checked = false;
+            }
+
+            // Initial checks for elements already in view
+            document.querySelectorAll('.section-title').forEach(title => {
+                if (isInViewport(title, title.offsetHeight * 0.5)) {
+                    title.classList.add('animated');
+                }
+            });
+            document.querySelectorAll('.skill-card').forEach(card => {
+                const progressBar = card.querySelector('.progress-bar');
+                const progressValue = card.getAttribute('data-progress');
+                if (isInViewport(card, card.offsetHeight * 0.2)) {
+                    progressBar.style.width = `${progressValue}%`;
+                    progressBar.classList.add('animated');
+                }
+            });
+            document.querySelectorAll('.timeline_item').forEach(item => {
+                if (isInViewport(item, item.offsetHeight * 0.2)) {
+                    item.classList.add('visible');
+                }
+            });
+
+            // Initial check for About Me stats on load
+            const statItems = document.querySelectorAll('.stat-item');
+            statItems.forEach(item => {
+                const statNumberElement = item.querySelector('.stat-number');
+                const targetValue = parseFloat(statNumberElement.getAttribute('data-target'));
+                const id = item.id || statNumberElement.id || `stat-${targetValue}`;
+
+                if (isInViewport(item, item.offsetHeight * 0.5) && !animatedStats.has(id)) {
+                    const isFloat = targetValue % 1 !== 0;
+                    animateValue(statNumberElement, 0, targetValue, 2000, isFloat);
+                    animatedStats.add(id);
+                }
+            });
+
+            // Initial check for back to top button visibility
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            }
+        });
+    </script>
+</body>
+</html>
