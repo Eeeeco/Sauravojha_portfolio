@@ -233,7 +233,7 @@
 
         @keyframes twinkle {
             0%, 100% { opacity: 0.8; }
-            50% { opacity: 0.3; }
+            50% { opacity: 0; }
         }
 
         /* Main content wrapper to sit above the background */
@@ -344,7 +344,7 @@
         .typing-text span::before {
             content: "Machine Learning Engineer"; /* Default content */
             color: #4766cb; /* Blue color for animated text */
-            animation: words 15s infinite; /* Animation for words */
+            animation: words 18s infinite; /* Increased animation duration for 6 words */
         }
 
         /* Typing cursor animation */
@@ -366,11 +366,12 @@
         }
 
         @keyframes words {
-            0%, 20% { content: "Machine Learning Engineer"; }
-            21%, 40% { content: "Data Scientist"; }
-            41%, 60% { content: "AI Developer"; }
-            61%, 80% { content: "Data Analyst"; }
-            81%, 100% { content: "Business Analyst"; }
+            0%, 16% { content: "Machine Learning Engineer"; } /* 1/6th of 18s = 3s */
+            17%, 33% { content: "Data Scientist"; }
+            34%, 50% { content: "AI Developer"; }
+            51%, 67% { content: "Data Analyst"; }
+            68%, 83% { content: "Business Analyst"; }
+            84%, 100% { content: "RCM Analyst"; } /* New designation */
         }
 
         .home-content p {
@@ -665,7 +666,7 @@
         }
 
         .skill-icon {
-            font-size: 2rem; /* Smaller font size */
+            font-size: 2rem; /* This is for Font Awesome, will be ignored by PNGs */
             padding: 0.8rem; /* Reduced padding */
             border-radius: 50%;
             width: 40px; /* Smaller width */
@@ -673,24 +674,28 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(107, 72, 255, 0.1); /* Semi-transparent purple background for icons */
+            /* Removed background tint */
+            /* background: rgba(107, 72, 255, 0.1); */
             transition: transform 0.3s ease;
+            background-size: contain; /* Ensure image fits without cropping */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent image repetition */
         }
 
         .skill-card:hover .skill-icon {
             transform: scale(1.1); /* Enlarge icon on card hover */
         }
 
-        /* Specific skill icon colors */
-        .skill-icon.python { color: #3776AB; }
-        .skill-icon.powerbi { color: #F2C811; }
-        .skill-icon.sql { color: #00758F; }
-        .skill-icon.ml { color: #A61C3C; }
-        .skill-icon.us-healthcare { color: #2ecc71; }
-        .skill-icon.graphic-design { color: #e74c3c; }
-        .skill-icon.ms-excel { color: #27ae60; }
-        .skill-icon.html-css { color: #3498db; }
-        .skill-icon.statistical-analysis { color: #20b2aa; } /* New color for Statistical Analysis */
+        /* Specific skill icon colors (these were for Font Awesome, now mostly irrelevant but kept for reference if needed) */
+        /* .skill-icon.python { color: #3776AB; } */
+        /* .skill-icon.powerbi { color: #F2C811; } */
+        /* .skill-icon.sql { color: #00758F; } */
+        /* .skill-icon.ml { color: #A61C3C; } */
+        /* .skill-icon.us-healthcare { color: #2ecc71; } */
+        /* .skill-icon.graphic-design { color: #e74c3c; } */
+        /* .skill-icon.ms-excel { color: #27ae60; } */
+        /* .skill-icon.html-css { color: #3498db; } */
+        /* .skill-icon.statistical-analysis { color: #20b2aa; } */
 
 
         .skill-card h3 {
@@ -1281,7 +1286,7 @@
             .skill-icon {
                 width: 40px;
                 height: 40px;
-                font-size: 2rem;
+                /* font-size: 2rem; */ /* No longer needed for PNGs */
             }
 
             .skill-card h3 {
@@ -1317,12 +1322,12 @@
                 flex-direction: row; /* Ensure flex-direction is row for mobile */
                 justify-content: flex-start; /* Align content to the right of the line */
                 max-width: 100%; /* Use full width */
-                padding-left: 50px; /* Adjusted space for the line and circle */
+                padding-left: 60px; /* Increased space for the line and circle */
             }
 
             .timeline_content_wrapper {
                 text-align: left; /* All content aligns left */
-                padding-left: 20px; /* Adjusted padding for mobile */
+                padding-left: 10px; /* Adjusted padding for mobile */
                 padding-right: 0; /* Remove right padding */
                 max-width: calc(100% - 70px); /* Adjusted width for mobile to prevent overflow */
             }
@@ -1454,7 +1459,7 @@
             }
 
             .project-icon {
-                font-size: 3rem; /* Even smaller icon size on very small mobile */
+                /* font-size: 3rem; */ /* No longer needed for PNGs */
             }
 
             .project-card h3 {
@@ -1477,7 +1482,7 @@
             .skill-icon {
                 width: 35px;
                 height: 35px;
-                font-size: 1.8rem;
+                /* font-size: 1.8rem; */ /* No longer needed for PNGs */
             }
 
             .skill-card h3 {
@@ -1505,6 +1510,11 @@
 
             .timeline_item {
                 margin-bottom: 2rem;
+                padding-left: 50px; /* Adjusted for even smaller screens */
+            }
+
+            .timeline_content_wrapper {
+                padding-left: 10px; /* Adjusted for even smaller screens */
             }
 
             .timeline_date-text {
@@ -1647,7 +1657,7 @@
             <div class="skills-container">
                 <div class="skill-card" data-progress="90">
                     <div class="skill-header">
-                        <div class="skill-icon python"><i class="fab fa-python"></i></div>
+                        <div class="skill-icon" style="background-image: url('https://raw.githubusercontent.com/Eeeeco/Portfolio/main/Asset/python%20(1).png');"></div>
                         <h3>Python</h3>
                     </div>
                     <div class="skill-progress">
@@ -1658,7 +1668,7 @@
                 </div>
                 <div class="skill-card" data-progress="80">
                     <div class="skill-header">
-                        <div class="skill-icon powerbi"><i class="fas fa-chart-bar"></i></div>
+                        <div class="skill-icon" style="background-image: url('https://raw.githubusercontent.com/Eeeeco/Portfolio/main/Asset/PowerBI.png');"></div>
                         <h3>Power BI</h3>
                     </div>
                     <div class="skill-progress">
@@ -1669,7 +1679,7 @@
                 </div>
                 <div class="skill-card" data-progress="90">
                     <div class="skill-header">
-                        <div class="skill-icon sql"><i class="fas fa-database"></i></div>
+                        <div class="skill-icon" style="background-image: url('https://raw.githubusercontent.com/Eeeeco/Portfolio/main/Asset/MySQL.png');"></div>
                         <h3>SQL</h3>
                     </div>
                     <div class="skill-progress">
@@ -1680,7 +1690,7 @@
                 </div>
                 <div class="skill-card" data-progress="80">
                     <div class="skill-header">
-                        <div class="skill-icon ml"><i class="fas fa-brain"></i></div>
+                        <div class="skill-icon" style="background-image: url('https://raw.githubusercontent.com/Eeeeco/Portfolio/main/Asset/Machiine.png');"></div>
                         <h3>Machine Learning</h3>
                     </div>
                     <div class="skill-progress">
@@ -1691,8 +1701,9 @@
                 </div>
                 <div class="skill-card" data-progress="80">
                     <div class="skill-header">
-                        <div class="skill-icon us-healthcare"><i class="fas fa-hospital"></i></div>
-                        <h3>US Healthcare</h3>
+                        <!-- Updated background-image URL for RCM Process icon -->
+                        <div class="skill-icon" style="background-image: url('https://raw.githubusercontent.com/Eeeeco/Portfolio/main/Asset/revenue%20(1).png');"></div>
+                        <h3>RCM Process</h3>
                     </div>
                     <div class="skill-progress">
                         <div class="progress-bar">
@@ -1702,7 +1713,7 @@
                 </div>
                 <div class="skill-card" data-progress="60">
                     <div class="skill-header">
-                        <div class="skill-icon graphic-design"><i class="fas fa-paint-brush"></i></div>
+                        <div class="skill-icon" style="background-image: url('https://raw.githubusercontent.com/Eeeeco/Portfolio/main/Asset/vector.png');"></div>
                         <h3>Graphic Design</h3>
                     </div>
                     <div class="skill-progress">
@@ -1713,7 +1724,7 @@
                 </div>
                 <div class="skill-card" data-progress="90">
                     <div class="skill-header">
-                        <div class="skill-icon ms-excel"><i class="fas fa-file-excel"></i></div>
+                        <div class="skill-icon" style="background-image: url('https://raw.githubusercontent.com/Eeeeco/Portfolio/main/Asset/Excel.png');"></div>
                         <h3>MS Excel</h3>
                     </div>
                     <div class="skill-progress">
@@ -1724,7 +1735,7 @@
                 </div>
                 <div class="skill-card" data-progress="40">
                     <div class="skill-header">
-                        <div class="skill-icon html-css"><i class="fas fa-code"></i></div>
+                        <div class="skill-icon" style="background-image: url('https://raw.githubusercontent.com/Eeeeco/Portfolio/main/Asset/html.png');"></div>
                         <h3>HTML & CSS</h3>
                     </div>
                     <div class="skill-progress">
@@ -1736,7 +1747,7 @@
                 <!-- New Skill: Statistical Analysis -->
                 <div class="skill-card" data-progress="60">
                     <div class="skill-header">
-                        <div class="skill-icon statistical-analysis"><i class="fas fa-chart-line"></i></div>
+                        <div class="skill-icon" style="background-image: url('https://raw.githubusercontent.com/Eeeeco/Portfolio/main/Asset/statistics.png');"></div>
                         <h3>Statistical Analysis</h3>
                     </div>
                     <div class="skill-progress">
@@ -2119,7 +2130,7 @@
             });
 
             // Initial check for back to top button visibility
-            const backToTopBtn = document.getElementById('backToTopBtn');
+            const backToTopBtn = document.getElementById('backToTopBtn'); // Corrected variable name
             if (window.pageYOffset > 300) {
                 backToTopBtn.classList.add('show');
             }
