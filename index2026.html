@@ -32,6 +32,7 @@
             --primary-light-bg: #f0f2f5;
             --text-dark: #333;
             --text-light: white;
+            --border-default: #2d2d2d; /* New default border color for dark mode */
         }
         
         body {
@@ -87,8 +88,19 @@
         body.light-mode .project-card h3 { color: var(--text-dark); }
         body.light-mode .project-link { color: var(--new-primary-color); }
         body.light-mode .project-link:hover { color: #1565C0; }
-        body.light-mode .skill-card { background: var(--primary-light-bg); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
-        body.light-mode .skill-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); border-color: transparent; }
+
+        /* Light Mode Skill Card Fixes for new clean border */
+        body.light-mode .skill-card { 
+            background: var(--primary-light-bg); 
+            border: 1px solid rgba(0, 0, 0, 0.1); 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+        }
+        body.light-mode .skill-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: none; 
+            border: 1px solid var(--new-primary-color); /* Premium 1px Blue Outline */
+        }
+        
         body.light-mode .skill-card h3 { color: var(--text-dark); }
         body.light-mode .skill-progress { border: 1px solid rgba(0, 0, 0, 0.2); background: rgba(0, 0, 0, 0.05); }
         body.light-mode .progress-value { color: var(--text-dark); text-shadow: none; }
@@ -133,7 +145,7 @@
             opacity: 0;
             transform: translateY(-100%);
             transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s, background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
-            position: relative; /* Set to relative so theme-toggle can be absolutely positioned inside */
+            position: relative;
         }
         
         header.header-visible {
@@ -350,7 +362,7 @@
             0%, 16% { content: "ML Engineer"; }
             17%, 33% { content: "Data Scientist"; }
             34%, 50% { content: "Data Engineer"; }
-            51%, 66% { content: "Data Analyst"; }
+            51%, 66% { content: "BI Analyst"; }
             67%, 83% { content: "Business Analyst"; }
             84%, 100% { content: "RCM Analyst"; }
         }
@@ -546,14 +558,16 @@
             padding: 2.5rem;
             text-align: left;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            /* FIX 1: Remove original box-shadow and soften border color */
+            box-shadow: none; 
+            border: 1px solid var(--border-default); /* Initial border set to 1px */
         }
 
         .skill-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(41, 121, 255, 0.3);
-            border-color: transparent;
+            /* FIX 2: Remove hover box-shadow and set to 1px crisp blue border */
+            box-shadow: none; 
+            border: 1px solid var(--new-primary-color); 
         }
 
         .skill-header {
@@ -916,11 +930,10 @@
 
         /* Theme Toggle Button FIXES */
         .theme-toggle {
-            /* FIX 1: Use position: absolute relative to the header, not fixed relative to the viewport */
             position: absolute; 
-            top: 50%; /* Center vertically within the header */
-            right: 3rem; /* Position slightly in from the right edge */
-            transform: translateY(-50%); /* Pull back up by half its height for perfect vertical centering */
+            top: 50%; 
+            right: 3rem; 
+            transform: translateY(-50%); 
             z-index: 101;
             background-color: #0a0a0a;
             border-radius: 50%;
@@ -932,7 +945,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
             color: #ffffff;
-            /* FIX 2: Consistent icon sizing */
             font-size: 2.5rem; 
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
@@ -1246,7 +1258,7 @@
                 font-size: 2rem;
                 top: 50%;
                 right: 1.5rem;
-                transform: translateY(-50%); /* Ensures mobile centering remains */
+                transform: translateY(-50%); 
             }
         }
 
@@ -1536,7 +1548,7 @@
     <section id="about" class="about">
         <h2 class="section-title">About Me</h2>
         <div class="about-content">
-            <p>I am a dedicated and results-driven Data Analyst with a strong foundation in **Python**, **Power BI**, **SQL**, and **Machine Learning**. My passion lies in transforming complex datasets into clear, actionable insights that drive strategic business decisions. With experience in healthcare revenue cycle management and a keen eye for detail, I excel at identifying trends, building predictive models, and creating impactful data visualizations. I am constantly seeking new challenges and opportunities to leverage data for problem-solving and innovation.</p>
+            <p>I am a dedicated and results-driven Data Analyst with a strong foundation in Python, Power BI, SQL, and Machine Learning. My passion lies in transforming complex datasets into clear, actionable insights that drive strategic business decisions. With experience in healthcare revenue cycle management and a keen eye for detail, I excel at identifying trends, building predictive models, and creating impactful data visualizations. I am constantly seeking new challenges and opportunities to leverage data for problem-solving and innovation.</p>
             <div class="about-stats">
                 <div class="stat-item">
                     <div class="stat-number" data-target="4">0</div>
@@ -1561,7 +1573,7 @@
                 <img src="https://github.com/Eeeeco/Portfolio/blob/main/health.png?raw=true" alt="Heart Disease Prediction Model Icon" class="project-image-icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/2979ff/FFFFFF?text=Heart';">
                 <div class="project-content">
                     <h3>Heart Disease Prediction</h3>
-                    <p>Developed a machine learning model achieving **92% Accuracy** using Logistic Regression to forecast cardiac risk.</p>
+                    <p>Developed a machine learning model achieving 92% Accuracy using Logistic Regression to forecast cardiac risk.</p>
                     <a href="https://github.com/lightwordz/INX_Employee_Performance" target="_blank" class="project-link">View Project</a>
                 </div>
             </div>
@@ -1569,7 +1581,7 @@
                 <img src="https://github.com/Eeeeco/Portfolio/blob/main/green-cross.png?raw=true" alt="Insurance Claims Prediction Icon" class="project-image-icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/2979ff/FFFFFF?text=Claims';">
                 <div class="project-content">
                     <h3>Insurance Claims Prediction</h3>
-                    <p>Created an expense prediction model resulting in an estimated **$50,000 in projected annual savings** through efficient resource allocation.</p>
+                    <p>Created an expense prediction model resulting in an estimated $50,000 in projected annual savings through efficient resource allocation.</p>
                     <a href="https://github.com/lightwordz/INX_Employee_Performance" target="_blank" class="project-link">View Project</a>
                 </div>
             </div>
@@ -1577,7 +1589,7 @@
                 <img src="https://github.com/Eeeeco/Portfolio/blob/main/bike.png?raw=true" alt="Bike Rental Analysis Icon" class="project-image-icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/2979ff/FFFFFF?text=Bike';">
                 <div class="project-content">
                     <h3>Bike Rental Analysis</h3>
-                    <p>Analyzed bike rental data using Python and data visualization to **optimize fleet management** and demand forecasting for revenue growth.</p>
+                    <p>Analyzed bike rental data using Python and data visualization to optimize fleet management and demand forecasting for revenue growth.</p>
                     <a href="https://github.com/lightwordz/INX_Employee_Performance" target="_blank" class="project-link">View Project</a>
                 </div>
             </div>
@@ -1585,7 +1597,7 @@
                 <img src="https://github.com/Eeeeco/Portfolio/blob/main/house.png?raw=true" alt="House Price Prediction Icon" class="project-image-icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/2979ff/FFFFFF?text=House';">
                 <div class="project-content">
                     <h3>House Price Prediction</h3>
-                    <p>Built a machine learning model to predict house prices, providing **real-time valuation insights** for investment opportunities.</p>
+                    <p>Built a machine learning model to predict house prices, providing real-time valuation insights for investment opportunities.</p>
                     <a href="https://github.com/lightwordz/INX_Employee_Performance" target="_blank" class="project-link">View Project</a>
                 </div>
             </div>
@@ -1593,7 +1605,7 @@
                 <img src="https://github.com/Eeeeco/Portfolio/blob/main/Churn.png?raw=true" alt="Churn Rate Prediction Icon" class="project-image-icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/2979ff/FFFFFF?text=Churn';">
                 <div class="project-content">
                     <h3>Churn Rate Prediction</h3>
-                    <p>Developed predictive models achieving **88% predictive accuracy** to identify high-risk customers, supporting proactive retention strategies.</p>
+                    <p>Developed predictive models achieving 88% predictive accuracy to identify high-risk customers, supporting proactive retention strategies.</p>
                     <a href="https://github.com/lightwordz/INX_Employee_Performance" target="_blank" class="project-link">View Project</a>
                 </div>
             </div>
@@ -1601,7 +1613,7 @@
                 <img src="https://github.com/Eeeeco/Portfolio/blob/main/emp.png?raw=true" alt="Employee Performance Icon" class="project-image-icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/2979ff/FFFFFF?text=Perf';">
                 <div class="project-content">
                     <h3>Employee Performance Prediction</h3>
-                    <p>Analyzed HR data to forecast employee performance and identify key factors influencing productivity, reaching an **85% F1-score**.</p>
+                    <p>Analyzed HR data to forecast employee performance and identify key factors influencing productivity, reaching an 85% F1-score.</p>
                     <a href="https://github.com/lightwordz/INX_Employee_Performance" target="_blank" class="project-link">View Project</a>
                 </div>
             </div>
@@ -1611,6 +1623,39 @@
     <section id="skills" class="skills">
         <h2 class="section-title">My Skills</h2>
         <div class="skills-container">
+            <div class="skill-card" data-progress="95">
+                <div class="skill-header">
+                    <i class="fas fa-chart-line skill-img-icon" style="font-size: 2.2rem; color: #69db7c;"></i> 
+                    <h3>Data Analysis</h3>
+                </div>
+                <div class="skill-progress">
+                    <div class="progress-bar">
+                        <span class="progress-value">95%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-card" data-progress="90">
+                <div class="skill-header">
+                    <i class="fas fa-handshake skill-img-icon" style="font-size: 2.2rem; color: #ffab40;"></i> 
+                    <h3>Business Analysis</h3>
+                </div>
+                <div class="skill-progress">
+                    <div class="progress-bar">
+                        <span class="progress-value">90%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-card" data-progress="85">
+                <div class="skill-header">
+                    <i class="fas fa-brain skill-img-icon" style="font-size: 2.2rem; color: #9c27b0;"></i> 
+                    <h3>Data Science</h3>
+                </div>
+                <div class="skill-progress">
+                    <div class="progress-bar">
+                        <span class="progress-value">85%</span>
+                    </div>
+                </div>
+            </div>
             <div class="skill-card" data-progress="90">
                 <div class="skill-header">
                     <img src="https://github.com/Eeeeco/Portfolio/blob/main/Asset/python%20(1).png?raw=true" alt="Python Icon" class="skill-img-icon" onerror="this.onerror=null;this.src='https://placehold.co/45x45/2979ff/FFFFFF?text=Py';">
@@ -1731,7 +1776,7 @@
                     <div class="margin-bottom-xlarge">
                         <h3>MBA in Business Analytics</h3>
                         <h4>UPES University</h4>
-                        <div class="timeline_text">Specialized in **Business Analytics**, Data Science & Machine Learning. Completed coursework in Financial management, database management, and AI.</div>
+                        <div class="timeline_text">Specialized in Business Analytics, Data Science & Machine Learning. Completed coursework in Financial management, database management, and AI.</div>
                     </div>
                 </div>
             </div>
