@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saurav Ojha | Analyst</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. MINIMALIST VARIABLES --- */
+        :root {
+            --bg-body: #FAFAFA; /* Soft Off-White */
+            --bg-card: #FFFFFF;
+            --text-primary: #111111; /* Soft Black */
+            --text-secondary: #666666;
+            --accent: #222222; /* Strong Minimalist Accent */
+            --border-subtle: #E5E5E5;
+            --shadow-soft: 0 10px 40px rgba(0,0,0,0.04);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.08);
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* --- 2. RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { 
+            scroll-behavior: smooth; 
+        }
+
+        body {
+            background-color: var(--bg-body);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+        }
+
+        /* --- 3. LAYOUT: FIXED SIDEBAR + SCROLLABLE MAIN --- */
+        .layout-container {
+            display: flex;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* SIDEBAR NAVIGATION */
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid var(--border-subtle);
+            background: var(--bg-body);
+            z-index: 100;
+        }
+
+        .sidebar-top {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s var(--ease);
+            position: relative;
+            width: fit-content;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-primary);
+        }
+
+        /* Active Dot Indicator (Desktop) */
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--text-primary);
+            border-radius: 50%;
+        }
+
+        /* Sidebar Footer Area */
+        .sidebar-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.75rem;
+            color: #059669; /* Green for availability */
+            background: #ECFDF5;
+            padding: 4px 10px;
+            border-radius: 20px;
+            width: fit-content;
+            margin-bottom: 0.5rem;
+        }
+        .status-dot {
+            width: 6px; height: 6px; background: #059669; border-radius: 50%; margin-right: 6px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+        .socials {
+            display: flex;
+            gap: 1rem;
+        }
+        .social-icon {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+        .social-icon:hover { color: var(--text-primary); transform: translateY(-2px); }
+
+        /* MAIN CONTENT AREA */
+        .main-content {
+            flex: 1;
+            padding: 6rem 8%;
+        }
+
+        section {
+            margin-bottom: 10rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+            scroll-margin-top: 150px; /* Fix for anchor scrolling overlap */
+        }
+        section.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- 4. TYPOGRAPHY & COMPONENTS --- */
+        h1, h2, h3 { color: var(--text-primary); font-weight: 600; letter-spacing: -0.02em; }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 500px;
+            margin-bottom: 3rem;
+        }
+
+        .btn-minimal {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--text-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s var(--ease);
+            border: 1px solid var(--text-primary);
+        }
+        .btn-minimal:hover {
+            background: white;
+            color: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--border-subtle);
+            transition: 0.3s var(--ease);
+            width: 100%;
+            text-align: center;
+        }
+        .btn-outline:hover {
+            border-color: var(--text-primary);
+        }
+
+        /* GRID SYSTEMS */
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+
+        /* CARDS */
+        .clean-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            transition: 0.4s var(--ease);
+        }
+        .clean-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-soft);
+            border-color: transparent;
+        }
+
+        /* PROJECTS */
+        .project-meta {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .clean-card h3 { font-size: 1.4rem; margin-bottom: 1rem; }
+        .clean-card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .tech-stack { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .tech-tag { 
+            font-size: 0.75rem; padding: 4px 10px; 
+            background: #F5F5F5; color: #555; border-radius: 4px; 
+        }
+
+        /* TIMELINE (Minimal) */
+        .timeline-item {
+            border-left: 2px solid var(--border-subtle);
+            padding-left: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -6px; top: 0;
+            width: 10px; height: 10px; background: var(--bg-body);
+            border: 2px solid var(--text-secondary); border-radius: 50%;
+        }
+        .timeline-date { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; display: block; }
+
+        /* SKILLS (Simple Bars) */
+        .skill-item { margin-bottom: 1.5rem; }
+        .skill-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500; }
+        .skill-track { width: 100%; height: 6px; background: #EAEAEA; border-radius: 3px; overflow: hidden; }
+        .skill-fill { height: 100%; background: var(--text-primary); border-radius: 3px; width: 0; transition: width 1.5s var(--ease); }
+
+        /* FORM */
+        .form-group { margin-bottom: 1.5rem; }
+        .form-control {
+            width: 100%; padding: 1rem;
+            background: var(--bg-card); border: 1px solid var(--border-subtle);
+            font-family: 'Inter'; font-size: 1rem; color: var(--text-primary);
+            border-radius: 6px; transition: 0.3s;
+        }
+        .form-control:focus { outline: none; border-color: var(--text-primary); }
+
+        /* RESPONSIVE CSS - The Expert Fix */
+        @media (max-width: 1024px) {
+            .layout-container { flex-direction: column; }
+            
+            .sidebar { 
+                width: 100%; 
+                height: auto; 
+                position: sticky; 
+                top: 0;
+                padding: 1.5rem 5%; 
+                border-right: none; 
+                border-bottom: 1px solid var(--border-subtle);
+                flex-direction: column; 
+                align-items: flex-start;
+                gap: 1rem;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+            }
+
+            .sidebar-top { width: 100%; }
+
+            /* Mobile Navigation: Horizontal Scroll */
+            .nav-links { 
+                display: flex; 
+                flex-direction: row;
+                overflow-x: auto;
+                width: 100%;
+                padding-bottom: 5px; /* Space for hidden scrollbar */
+                gap: 1.5rem;
+                -webkit-overflow-scrolling: touch;
+                /* Hide Scrollbar */
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none;  /* IE 10+ */
+            }
+            .nav-links::-webkit-scrollbar { display: none; /* Chrome/Safari */ }
+
+            .nav-link { font-size: 0.9rem; }
+            
+            /* Hide sidebar dot on mobile, use color/border instead */
+            .nav-link.active::before { display: none; }
+            .nav-link.active { 
+                color: var(--text-primary); 
+                border-bottom: 2px solid var(--text-primary); 
+            }
+
+            .logo { margin-bottom: 0.5rem; }
+            
+            /* Hide Sidebar Footer (Socials/CTA) on Mobile Header to keep it clean */
+            /* They will appear in the actual footer or contact section */
+            .sidebar-footer { display: none; } 
+
+            .main-content { padding: 3rem 5%; }
+            h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layout-container">
+        
+        <!-- 1. CLEAN SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <a href="#" class="logo">Saurav Ojha</a>
+                <nav class="nav-links">
+                    <a href="#home" class="nav-link active">Introduction</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#projects" class="nav-link">Work</a>
+                    <a href="#skills" class="nav-link">Expertise</a>
+                    <a href="#experience" class="nav-link">History</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+
+            <!-- NEW: Sidebar Footer with Availability Status & CTA -->
+            <div class="sidebar-footer">
+                <div class="status-badge">
+                    <div class="status-dot"></div> Available for work
+                </div>
+                <a href="#contact" class="btn-outline">Hire Me</a>
+                <div class="socials">
+                    <a href="https://www.linkedin.com/in/sauravojha/" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/lightwordz" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="mailto:sauravojha124@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 2. MAIN SCROLLABLE CONTENT -->
+        <main class="main-content">
+
+            <!-- HOME -->
+            <section id="home">
+                <h1>Data Analyst &<br>Strategic Thinker.</h1>
+                <p class="subtitle">I translate complex datasets into clear, actionable business strategies. Currently specializing in Machine Learning and RCM Analytics.</p>
+                <a href="#projects" class="btn-minimal">View Selected Work</a>
+            </section>
+
+            <!-- ABOUT -->
+            <section id="about">
+                <h2>About Me</h2>
+                <div class="grid-2">
+                    <div>
+                        <p style="margin-bottom: 1.5rem; color: #444;">
+                            I am a Data Analyst with a unique background bridging Commerce and Technology. My journey began in financial accounting, which gave me a deep understanding of business KPIs. 
+                        </p>
+                        <p style="color: #444;">
+                            Today, I leverage that domain knowledge with <strong>Python, SQL, and Machine Learning</strong> to build predictive models that don't just look good on a dashboard but actually drive revenue and efficiency.
+                        </p>
+                    </div>
+                    <div style="display:flex; justify-content: center;">
+                        <img src="https://github.com/Eeeeco/Portfolio/blob/main/my-image.png?raw=true" alt="Saurav" style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%; filter: grayscale(100%); transition: 0.3s;">
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS -->
+            <section id="projects">
+                <h2>Selected Projects</h2>
+                <div class="grid-2">
+                    
+                    <div class="clean-card">
+                        <span class="project-meta">Healthcare AI</span>
+                        <h3>Heart Disease Prediction</h3>
+                        <p>A logistic regression model achieving 92% accuracy to forecast cardiac risk factors, enabling early intervention strategies.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-Learn</span>
+                            <span class="tech-tag">Pandas</span>
+                        </div>
+                    </div>
+
+                    <div class="clean-card">
+                        <span class="project-meta">Financial Analytics</span>
+                        <h3>Insurance Claims Optimization</h3>
+                        <p>Analyzed RCM data to identify leakage points. The insights provided a roadmap to save approximately $50k annually.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Tableau</span>
+                            <span class="tech-tag">Excel</span>
+                        </div>
+                    </div>
+
+                    <div class="clean-card">
+                        <span class="project-meta">Real Estate</span>
+                        <h3>House Price Prediction</h3>
+                        <p>Developed a regression-based pricing engine trained on historical housing data to estimate market value in real-time.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Seaborn</span>
+                        </div>
+                    </div>
+
+                    <div class="clean-card">
+                        <span class="project-meta">Business Intel</span>
+                        <h3>Bike Rental Analysis</h3>
+                        <p>Fleet management optimization dashboard created to visualize peak usage times and distribution logistics.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Data Viz</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SKILLS -->
+            <section id="skills">
+                <h2>Technical Expertise</h2>
+                <div class="grid-2">
+                    <div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span>Python & Data Science</span><span>90%</span></div>
+                            <div class="skill-track"><div class="skill-fill" style="width: 90%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span>SQL & Database Mgmt</span><span>85%</span></div>
+                            <div class="skill-track"><div class="skill-fill" style="width: 85%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span>Power BI / Tableau</span><span>80%</span></div>
+                            <div class="skill-track"><div class="skill-fill" style="width: 80%"></div></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span>Business Strategy</span><span>90%</span></div>
+                            <div class="skill-track"><div class="skill-fill" style="width: 90%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span>RCM Processes</span><span>80%</span></div>
+                            <div class="skill-track"><div class="skill-fill" style="width: 80%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span>Excel (Advanced)</span><span>95%</span></div>
+                            <div class="skill-track"><div class="skill-fill" style="width: 95%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXPERIENCE -->
+            <section id="experience">
+                <h2>Experience & Education</h2>
+                <div class="grid-2">
+                    
+                    <!-- Experience Column -->
+                    <div>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-secondary);">Career History</h3>
+                        
+                        <div class="timeline-item">
+                            <span class="timeline-date">2023 - Present</span>
+                            <h3>Senior Executive</h3>
+                            <p class="project-meta">Access Healthcare</p>
+                            <p>Leading data interpretation and workflow optimization for US healthcare clients.</p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-date">2024 - 2025</span>
+                            <h3>Data Scientist Consultant</h3>
+                            <p class="project-meta">Rubixe AI</p>
+                            <p>Implemented AI-driven data solutions and predictive modeling.</p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-date">2021 - 2023</span>
+                            <h3>Analyst 2</h3>
+                            <p class="project-meta">R1RCM</p>
+                            <p>Advanced claims analysis and revenue cycle reporting.</p>
+                        </div>
+                    </div>
+
+                    <!-- Education Column -->
+                    <div>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-secondary);">Education</h3>
+                        
+                        <div class="timeline-item">
+                            <span class="timeline-date">2025 - 2027</span>
+                            <h3>MBA Business Analytics</h3>
+                            <p class="project-meta">UPES University</p>
+                            <p>Specialization in Data Science & Strategy.</p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-date">2019 - 2023</span>
+                            <h3>Bachelor of Commerce</h3>
+                            <p class="project-meta">IGNOU University</p>
+                            <p>Accounting & Financial Management.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- CONTACT -->
+            <section id="contact">
+                <h2>Get In Touch</h2>
+                <div class="grid-2">
+                    <div>
+                        <p class="subtitle">I am currently available for freelance work or full-time opportunities. Let's discuss how data can help your business.</p>
+                        <p style="margin-bottom: 0.5rem;"><strong>Email:</strong> sauravojha124@gmail.com</p>
+                        <p style="margin-bottom: 0.5rem;"><strong>Phone:</strong> +91 882xxxxx74</p>
+                        <p><strong>Location:</strong> Noida, India</p>
+                        
+                        <!-- Redundant socials in contact section since they are hidden in mobile header -->
+                        <div class="socials" style="margin-top: 1.5rem;">
+                            <a href="https://www.linkedin.com/in/sauravojha/" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://github.com/lightwordz" class="social-icon"><i class="fab fa-github"></i></a>
+                            <a href="mailto:sauravojha124@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    
+                    <form action="https://formspree.io/f/myzlobjz" method="post">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" class="form-control" rows="4" placeholder="Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-minimal" style="width: 100%; border: none; cursor: pointer;">Send Message</button>
+                    </form>
+                </div>
+            </section>
+
+            <footer style="margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle); color: var(--text-secondary); font-size: 0.8rem;">
+                &copy; 2025 Saurav Ojha. Minimalist Design.
+            </footer>
+
+        </main>
+    </div>
+
+    <script>
+        // --- MINIMALIST INTERACTION SCRIPT ---
+
+        // 1. Intersection Observer for Fade-In on Scroll
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // 2. Active Link Highlighting on Scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            // Offset for sticky header
+            const offset = window.innerWidth > 1024 ? 0 : 200; 
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // Adjusted logic for mobile vs desktop offset
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
