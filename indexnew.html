@@ -34,15 +34,18 @@
             --card-bg: #0a0a0a;
             --card-gradient-dark: linear-gradient(145deg, #111111, #050505);
             --card-hover-gradient: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            --card-inner-dark: rgba(255, 255, 255, 0.03); 
             
             --text-main: #ffffff;
             --text-secondary: #a0a0a0;
-            --border-default: #2d2d2d; /* Dark grey border for Dark Mode */
+            --text-secondary-light: #4b5563;
+            --border-dark: #2d2d2d;
+            --border-light: #e5e7eb;
             --shadow-color: rgba(0, 0, 0, 0.5);
             
-            /* Timeline Gradient Colors (Dark Mode) */
-            --timeline-gradient-start: #002984; 
-            --timeline-gradient-end: #2979ff;
+            /* Timeline Gradient Variables (Dark Mode Default) */
+            --timeline-grad-start: #002984; 
+            --timeline-grad-end: #2979ff;
         }
         
         /* Light Mode Colors */
@@ -53,12 +56,12 @@
             --card-hover-gradient: #f9f9f9;
             --text-main: #1a1a1a; 
             --text-secondary: #555555;
-            --border-default: #e0e0e0; /* FIXED: Light grey border for Light Mode */
+            --border-dark: #e0e0e0; /* Uses border-dark variable name for consistency */
             --shadow-color: rgba(0, 0, 0, 0.08);
             
-            /* Timeline Gradient Colors (Light Mode Fix) */
-            --timeline-gradient-start: #2979ff; 
-            --timeline-gradient-end: #00d2ff;
+            /* Timeline Gradient Light Mode */
+            --timeline-grad-start: #60a5fa; 
+            --timeline-grad-end: #00d2ff;   
         }
 
         body {
@@ -68,6 +71,7 @@
             color: var(--text-main);
             display: flex;
             flex-direction: column;
+            position: relative;
             overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
@@ -121,7 +125,7 @@
         }
         nav a:hover::after, nav a.active::after { width: 100%; }
 
-        /* Theme Toggle (Outline Style) */
+        /* Theme Toggle */
         .theme-toggle {
             position: absolute; right: 3rem; top: 50%; transform: translateY(-50%);
             z-index: 101; background: var(--bg-color); border: 2px solid var(--primary-accent);
@@ -158,23 +162,26 @@
         }
         .home-content { max-width: 60rem; }
         
-        /* Unified Typography Sizes */
-        .home-intro-text { font-size: 3.5rem; font-weight: 700; line-height: 1.2; color: var(--text-main); white-space: nowrap; }
+        /* Responsive Typography for Single Line */
+        .home-intro-text { 
+            /* clamp(min, ideal, max) scales the text smoothly */
+            font-size: clamp(2.5rem, 4vw, 3.5rem); 
+            font-weight: 700; line-height: 1.2; color: var(--text-main); 
+            white-space: nowrap; margin-bottom: 0.5rem; 
+        }
         .home-name-highlight { 
             background: linear-gradient(to right, var(--primary-accent), var(--secondary-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;
         }
 
-        /* Typing Animation */
-        .typing-container { font-size: 3.5rem; font-weight: 700; margin: 0.5rem 0 1.5rem 0; display: flex; align-items: center; }
+        .typing-container { 
+            font-size: clamp(2.5rem, 4vw, 3.5rem); 
+            font-weight: 700; margin: 0.5rem 0 1.5rem 0; display: flex; align-items: center; 
+        }
         .typing-text { margin-left: 1rem; color: var(--primary-accent); }
         .typing-text span {
             background: linear-gradient(to right, var(--primary-accent), var(--secondary-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative;
         }
         .typing-text span::before { content: "ML Engineer"; animation: words 15s infinite; }
         .typing-text span::after { content: ""; position: absolute; width: 3px; height: 100%; background: var(--primary-accent); right: -5px; animation: cursor 0.8s infinite; }
@@ -195,16 +202,15 @@
         .social-icons a:hover { background: var(--primary-accent); color: white; box-shadow: 0 0 15px var(--primary-accent); transform: translateY(-3px); }
 
         .btn {
-            display: inline-block; padding: 0.8rem 2rem; background: transparent;
+            display: inline-block; padding: 0.8rem 2.2rem; background: transparent;
             border-radius: 3rem; font-size: 1.4rem; color: var(--primary-accent); font-weight: 600;
             border: 2px solid var(--primary-accent); transition: 0.3s; cursor: pointer; margin-top: 2rem;
         }
-        .btn:hover { transform: scale(1.03); background: var(--primary-accent); color: #fff; box-shadow: 0 0 20px var(--primary-accent); }
+        .btn:hover { background: var(--primary-accent); color: #fff; box-shadow: 0 0 20px var(--primary-accent); }
 
-        .home-img img {
-            width: 25vw; max-width: 300px; border-radius: 50%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: none; transition: 0.4s;
+        .home-img img { 
+            width: 25vw; max-width: 300px; border-radius: 50%; 
+            border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.4s; 
         }
         .home-img img:hover { transform: scale(1.02); }
         
@@ -216,12 +222,9 @@
 
         /* --- 5. ABOUT --- */
         .about-content { max-width: 900px; margin: 0 auto; text-align: center; }
-        .about-content p { 
-            font-size: 1.6rem; color: var(--text-secondary); margin-bottom: 4rem; 
-            line-height: 1.8;
-        }
+        .about-content p { font-size: 1.6rem; color: var(--text-secondary); margin-bottom: 4rem; line-height: 1.8; }
         .about-stats { display: flex; justify-content: space-around; gap: 2rem; flex-wrap: wrap; }
-        .stat-item { background: var(--card-bg); border: 1px solid var(--border-default); padding: 2rem; border-radius: 1.5rem; flex: 1; min-width: 180px; transition: 0.3s; }
+        .stat-item { background: var(--card-bg); border: 1px solid var(--border-dark); padding: 2rem; border-radius: 1.5rem; flex: 1; min-width: 180px; transition: 0.3s; }
         .stat-item:hover { border-color: var(--primary-accent); transform: translateY(-5px); }
         .stat-number { 
             font-size: 4rem; font-weight: 700; color: var(--primary-accent); display: block; margin-bottom: 0.5rem; 
@@ -242,32 +245,32 @@
             background: var(--card-gradient-dark);
             border-radius: 15px; padding: 2.5rem;
             text-align: center; display: flex; flex-direction: column; justify-content: space-between; align-items: center;
-            border: 1px solid var(--border-default); transition: 0.3s; flex-shrink: 0;
+            border: 1px solid #2d2d2d; transition: 0.3s; flex-shrink: 0;
         }
         .marquee-card:hover { 
-            transform: translateY(-5px); 
-            background: var(--card-hover-gradient);
-            border-color: var(--primary-accent); 
-            box-shadow: 0 10px 30px rgba(41, 121, 255, 0.15); 
+            transform: translateY(-5px); background: var(--card-hover-gradient);
+            border-color: var(--primary-accent); box-shadow: 0 10px 30px rgba(41, 121, 255, 0.15); 
         }
-        .marquee-card img { width: 50px; height: 50px; object-fit: contain; margin-bottom: 1.5rem; border: none; background: transparent; padding: 0; }
-        .marquee-card h3 { font-size: 1.8rem; color: var(--text-main); margin-bottom: 1rem; font-weight: 600; }
-        .marquee-card p { font-size: 1.3rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.5; }
+        
+        /* Light Mode Project Card Fix */
+        body.light-mode .marquee-card { background: #ffffff; border: 1px solid #e5e7eb; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); }
+        body.light-mode .marquee-card p { color: #4b5563; }
+        body.light-mode .marquee-card h3 { color: var(--text-dark); }
+
+        .marquee-card img { width: 55px; height: 55px; object-fit: contain; margin-bottom: 1.5rem; border: none; background: transparent; padding: 0; }
+        .marquee-card h3 { font-size: 1.8rem; color: #fff; margin-bottom: 1rem; font-weight: 600; }
+        .marquee-card p { font-size: 1.3rem; color: #ccc; margin-bottom: 1.5rem; line-height: 1.5; }
         .project-link { font-size: 1.3rem; color: var(--primary-accent); font-weight: 600; transition: 0.3s; }
         .project-link:hover { color: #4766cb; text-decoration: underline; }
 
-        /* --- 7. SKILLS (12 Skills) --- */
+        /* --- 7. SKILLS --- */
         .skills-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 3rem; 
-            max-width: 1100px; 
-            margin: 0 auto;
-            padding: 0 4rem; 
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; 
+            max-width: 1100px; margin: 0 auto; padding: 0 4rem; 
         }
         .skill-card {
             background: var(--card-bg);
-            border: 1px solid var(--border-default);
+            border: 1px solid var(--border-dark);
             padding: 2rem; border-radius: 12px; transition: 0.3s;
         }
         .skill-card:hover { border: 1px solid var(--primary-accent); background: rgba(41, 121, 255, 0.05); transform: translateY(-3px); }
@@ -286,42 +289,45 @@
         @keyframes shine { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
         .progress-value { font-size: 1.1rem; font-weight: 600; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
 
-        /* --- 8. TIMELINE (FIXED: WIDER, GRADIENT, LEFT ALIGNED) --- */
-        .timeline_component { position: relative; max-width: 1000px; margin: 0 auto; padding-left: 40px; }
+        /* --- 8. TIMELINE (Strict Left Alignment) --- */
+        .timeline_component { position: relative; max-width: 1000px; margin: 0 auto; padding-left: 50px; }
         
-        /* Base Track (Fix for Light Mode black line issue) */
+        /* Vertical Track */
         .timeline_progress { 
-            position: absolute; left: 19px; top: 0; bottom: 0; 
-            width: 6px; /* Widened to 6px */
-            background: var(--border-default); /* Light grey in light mode */
-            border-radius: 3px; overflow: hidden; 
+            position: absolute; left: 17px; top: 0; bottom: 0; 
+            width: 6px; background: var(--border-dark); 
+            overflow: hidden; border-radius: 3px; 
         }
         
-        /* Animated Fill Bar */
+        /* Animated Gradient Bar */
         .timeline_progress-bar {
             position: absolute; left: 0; top: 0; width: 100%; height: 0;
-            /* Gradient uses variables to adapt to light mode */
-            background: linear-gradient(to bottom, var(--timeline-gradient-start), var(--timeline-gradient-end));
+            background: linear-gradient(to bottom, var(--timeline-grad-start), var(--timeline-grad-end)); 
             transition: height 0.1s linear;
         }
         
-        .timeline_item { display: flex; flex-direction: column; position: relative; margin-bottom: 4rem; padding-left: 30px; opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
+        .timeline_item { 
+            display: flex; flex-direction: column; position: relative; 
+            margin-bottom: 4rem; padding-left: 30px; opacity: 0; 
+            transform: translateY(20px); transition: 0.6s ease; 
+        }
         .timeline_item.visible { opacity: 1; transform: translateY(0); }
         
-        /* Adjusted center circle to align with 6px line (left: 19px) */
+        /* Timeline Circle */
         .timeline_centre { 
-            position: absolute; left: -38px; top: 0; 
-            width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; 
+            position: absolute; left: -38px; top: 5px; width: 16px; height: 16px; 
+            display: flex; justify-content: center; align-items: center; 
         }
         .timeline_circle { 
             width: 12px; height: 12px; background: var(--bg-color); 
             border: 2px solid var(--primary-accent); border-radius: 50%; z-index: 2; 
         }
 
+        /* Timeline Content Card */
         .timeline_right {
             width: 100%; padding: 2.5rem; border-radius: 10px;
             background: var(--card-inner-dark); 
-            border: 1px solid var(--border-default);
+            border: 1px solid var(--border-dark);
             box-shadow: none;
             transition: 0.3s;
         }
@@ -332,12 +338,17 @@
         .margin-bottom-xlarge h4 { font-size: 1.4rem; color: var(--text-secondary); margin-bottom: 1rem; font-weight: 400; }
         .timeline_text { font-size: 1.3rem; color: var(--text-secondary); line-height: 1.6; }
 
+        /* Light Mode Text Fix for Timeline */
+        body.light-mode .timeline_text { color: var(--text-secondary-light); }
+        body.light-mode .margin-bottom-xlarge h3 { color: var(--text-dark); }
+        body.light-mode .margin-bottom-xlarge h4 { color: var(--text-secondary-light); }
+
         /* --- 9. CONTACT --- */
         .contact-content { display: flex; flex-direction: column; align-items: center; max-width: 900px; margin: 0 auto; width: 100%; }
         .contact-row-top { display: flex; gap: 3rem; width: 100%; justify-content: center; flex-wrap: wrap; }
-        .contact-form, .contact-info { flex: 1; min-width: 300px; background: var(--card-bg); padding: 3rem; border-radius: 15px; border: 1px solid var(--border-default); }
+        .contact-form, .contact-info { flex: 1; min-width: 300px; background: var(--card-bg); padding: 3rem; border-radius: 15px; border: 1px solid var(--border-dark); }
         .form-row { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; }
-        input, textarea { width: 100%; padding: 1.2rem; background: var(--bg-color); border: 1px solid var(--border-default); color: var(--text-main); border-radius: 0.5rem; font-family: inherit; }
+        input, textarea { width: 100%; padding: 1.2rem; background: var(--bg-color); border: 1px solid var(--border-dark); color: var(--text-main); border-radius: 0.5rem; font-family: inherit; }
         textarea { height: 120px; resize: none; }
         input:focus, textarea:focus { border-color: var(--primary-accent); }
         
@@ -345,7 +356,7 @@
         .contact-info p { font-size: 1.5rem; color: var(--text-secondary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
         .contact-info i { color: var(--primary-accent); width: 20px; text-align: center; }
 
-        .social-links-container { margin-top: 3rem; width: 100%; text-align: center; border-top: 1px solid var(--border-default); padding-top: 2rem; }
+        .social-links-container { margin-top: 3rem; width: 100%; text-align: center; border-top: 1px solid var(--border-dark); padding-top: 2rem; }
         .social-links-container h2 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main); }
 
         /* --- 10. FOOTER --- */
@@ -356,16 +367,16 @@
         .back-to-top.show { opacity: 1; pointer-events: auto; }
         .back-to-top:hover { transform: translateY(-5px); }
 
-        /* Responsive */
+        /* --- RESPONSIVE --- */
         @media (max-width: 991px) {
-            .home { flex-direction: column-reverse; text-align: center; }
+            header { padding: 1.5rem 4%; }
+            .home { flex-direction: column-reverse; gap: 4rem; text-align: center; }
             .home-img img { width: 50vw; }
             .skills-container { grid-template-columns: repeat(2, 1fr); padding: 0 2rem; }
         }
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 1.5rem; padding: 2rem 4%; background: var(--bg-color); }
             .theme-toggle { top: 2rem; right: 2rem; transform: none; }
-            .home-intro-text, .typing-container { font-size: 2.5rem; justify-content: center; white-space: normal; }
             .skills-container { grid-template-columns: 1fr; }
             .contact-row-top { flex-direction: column; }
             .form-row { flex-direction: column; }
@@ -407,7 +418,7 @@
             <a href="https://docs.google.com/document/d/1K2HlRnaRjNAMmFCYxd1MGS2vda02JZ7h/export?format=pdf" class="btn" target="_blank">Download CV</a>
         </div>
         <div class="home-img">
-            <img src="https://github.com/Eeeeco/Portfolio/blob/main/my-image.png?raw=true" alt="Profile" onerror="this.onerror=null;this.src='https://placehold.co/350x350/2979ff/FFFFFF?text=Profile';" />
+            <img src="https://github.com/Eeeeco/Portfolio/blob/main/my-image.png?raw=true" alt="Profile Picture" onerror="this.onerror=null;this.src='https://placehold.co/350x350/2979ff/FFFFFF?text=Profile';" />
         </div>
         <a href="#about" class="scroll-indicator"><i class="fas fa-chevron-down"></i></a>
     </section>
@@ -431,7 +442,7 @@
                 <div class="marquee-card">
                     <img src="https://github.com/Eeeeco/Portfolio/blob/main/health.png?raw=true" alt="Heart" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2979ff/FFFFFF?text=H';">
                     <h3>Heart Disease Prediction</h3>
-                    <p>Developed a machine learning model achieving 92% Accuracy using Logistic Regression to forecast cardiac risk.</p>
+                    <p>Developed a ML model achieving 92% Accuracy using Logistic Regression to forecast cardiac risk.</p>
                     <a href="https://github.com/lightwordz/INX_Employee_Performance" target="_blank" class="project-link">View Project</a>
                 </div>
                 <div class="marquee-card">
@@ -443,13 +454,13 @@
                  <div class="marquee-card">
                     <img src="https://github.com/Eeeeco/Portfolio/blob/main/bike.png?raw=true" alt="Bike" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2979ff/FFFFFF?text=B';">
                     <h3>Bike Rental Analysis</h3>
-                    <p>Analyzed rental data using Python and visualization to optimize fleet management.</p>
+                    <p>Analyzed bike rental data using Python and visualization to optimize fleet management.</p>
                     <a href="https://github.com/lightwordz/INX_Employee_Performance" target="_blank" class="project-link">View Project</a>
                 </div>
                  <div class="marquee-card">
                     <img src="https://github.com/Eeeeco/Portfolio/blob/main/house.png?raw=true" alt="House" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2979ff/FFFFFF?text=H';">
                     <h3>House Price Prediction</h3>
-                    <p>Built a machine learning model to predict house prices, providing real-time valuation insights.</p>
+                    <p>Built a ML model to predict house prices, providing real-time valuation insights.</p>
                     <a href="#" class="project-link">View Project</a>
                 </div>
                  <div class="marquee-card">
@@ -467,7 +478,7 @@
                 <div class="marquee-card">
                     <img src="https://github.com/Eeeeco/Portfolio/blob/main/health.png?raw=true" alt="Heart" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2979ff/FFFFFF?text=H';">
                     <h3>Heart Disease Prediction</h3>
-                    <p>Developed a machine learning model achieving 92% Accuracy using Logistic Regression.</p>
+                    <p>Developed a ML model achieving 92% Accuracy using Logistic Regression.</p>
                     <a href="#" class="project-link">View Project</a>
                 </div>
                  <div class="marquee-card">
@@ -788,6 +799,7 @@
             });
         });
 
+        // RESET ANIMATIONS ON THEME TOGGLE
         document.getElementById('themeToggle').addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
             const icon = document.querySelector('#themeToggle i');
@@ -796,6 +808,14 @@
             } else {
                 icon.classList.replace('fa-sun', 'fa-moon');
             }
+            
+            // Force reset of specific animations to make transition smooth/re-trigger
+            animatedStats.clear();
+            document.querySelectorAll('.stat-number').forEach(el => {
+                if (el.textContent.trim() !== '4+') el.textContent = '0';
+            });
+            document.querySelectorAll('.progress-bar').forEach(el => el.style.width = '0');
+            setTimeout(handleScrollAnimations, 100);
         });
     </script>
 </body>
